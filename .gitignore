@@ -9,3 +9,10 @@ bin/
 .idea
 
 .settings
+
+.vscode/
+
+report/*
+
+!report/report.tex
+!report/report.pdf
