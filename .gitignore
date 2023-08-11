@@ -13,6 +13,8 @@ bin/
 .vscode/
 
 report/*
-
 !report/report.tex
 !report/report.pdf
+
+progettazione concettuale
+!progettazione concettuale/SportConnected.lun
