@@ -53,16 +53,16 @@ o proprie attività i quali vengono salvati sotto forma di file .gpx.
 
 Un percorso rappresenta l'intero itinerario dell'attività e può contenere o meno dei segmenti, mentre un 
 segmento è una sezione con determinate caratteristiche, quali salita, discesa, tratto difficile, 
-acque libere, ... Ogni tratto completato ha un tempo di percorrenza associato. Le attività hanno i 
+acque libere, \dots Ogni tratto completato ha un tempo di percorrenza associato. Le attività hanno i 
 propri segmenti e le proprie classifiche.
 
 Possono inoltre essere creati segmenti dagli utenti, a condizione che 
 il segmento sia presente nel percorso svolto e che non ne siano presenti altri simili, potrà essere 
 impostato come pubblico o privato. Possono essere assegnati dei riconoscimenti all' utente in base ai 
-tempi raggiunti sui segmenti, titoli come: più veloce di tutti, top 10, record personale...
+tempi raggiunti sui segmenti, titoli come: più veloce di tutti, top 10, record personale\dots
 
 Le attività possono essere caricate, decidendo la visibilità, il titolo, una descrizine, il tipo si sport, 
-un percorso, un giorno, distanza totale, qualche foto, dislivello, velocità media, tempo, calorie bruciate, altitudine... 
+un percorso, un giorno, distanza totale, qualche foto, dislivello, velocità media, tempo, calorie bruciate, altitudine\dots 
 Vengono visualizzati anche i relativi segmenti del percorso. Possono poi essere commentate da altri 
 utenti in grado di assegare anche un apprezzamento.
 
@@ -77,14 +77,14 @@ relazioni con altri concetti.
     \renewcommand{\arraystretch}{1.5} % Altezza delle righe
     \begin{tabularx}{\textwidth}{
         >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
-        >{\raggedright\arraybackslash}p{\dimexpr.45\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
+        >{\raggedright\arraybackslash}p{\dimexpr.47\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
         >{\raggedright\arraybackslash}p{\dimexpr.15\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
-        >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 4
+        >{\raggedright\arraybackslash}p{\dimexpr.18\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 4
         }
     \arrayrulecolor[HTML]{BDBFC3}
     \rowcolor[HTML]{cef3fe} 
-    \textbf{Termine} & \textbf{Descrizione} & \textbf{Sinonimi} & \textbf{Collegamenti} \\
-    Utente & Persona che si registra all'applicazione. & Persona & Attività\\ \hline
+    \textbf{Termine} & \textbf{Descrizione} & \textbf{Sinonimi} & \textbf{Relazioni} \\
+    Utente & Persona che si registra all'applicazione. Può caricare le sue attività o salvare percorsi e segmenti fatti da altri utenti. Può interagire con altri utenti. & Persona & Attrezzatura, Attività, Percorso, Segmento\\ \hline
     Attrezzatura & Materiale utilizzato da un utente per svolgere le proprie attività. & Bici, Scarpe & Utente, Attività \\ \hline 
 	Attività & L'insieme di tutte le informazioni dell'attività sportiva svolta da un utente. & & Utente, Percorso\\ \hline
     Percorso & Intera tratta percorsa in un'attività. & Itinerario & Attività, Segmento\\ \hline
@@ -96,7 +96,37 @@ relazioni con altri concetti.
 
 \subsection*{Ristrutturazione dei requisiti}
 A seguito dell'analisi dei requisiti e all'estrazione dei concetti principali si procede eliminando omonimie e
-riformulando la richiesta in maniera che risulti più chiara e semplice da interpretare.
+riformulando la richiesta in maniera che risulti più chiara e fruibile per la realizzazione della base di dati.
 
+\vspace{12pt}
+
+Per ogni \textbf{utente} vengono salvati un codice, nome, cognome, data di nascita e opzionalmente una foto profilo,
+biografia, città e provincia, peso, altezza, \textbf{attrezzatura} utilizzata. Un utente può seguire o essere seguito 
+da altri utenti. Ad ogni utente vengono associate le relative \textbf{attività} e può salvare \textbf{percorsi} o 
+\textbf{segmenti} di altri utenti. Le informazioni sull'utente unite a quelle dell'\textbf{attività} possono essere
+utilizzare per calcolare calorie bruciate, potenza\dots
+
+L'\textbf{attrezzatura} è indicabile scegliendo tipologia di bici o marca di scarpe.
+
+Le \textbf{attività} devono specificare tipologia di sport, titolo, visibilità, \textbf{percorso}, giorno, distanza totale,
+tempo, velocità media\dots In base alla tipologia di sport hanno più o meno dati rilevanti. Le attività rese pubbliche 
+possono ricevere \textbf{commenti} e feedback da altri \textbf{utenti}.
+
+Il \textbf{percorso} è rappresentato da una traccia .gpx e da possibili \textbf{segmenti}.
+
+Un \textbf{segmento} è rappresentato da una traccia .gpx, una determinata caratteristica, un tempo di
+percorrenza associato, visibilità pubblica o privata. I segmenti sono dipendenti dalla tipologia di sport e possono 
+essere creati dagli \textbf{utenti} se presenti nel \textbf{percorso} caricato in un attività e non ne sono presenti 
+di simili.
+
+Un \textbf{riconoscimento} può essere assegnato ad un \textbf{utente} in base al tempo impiegato su un determinato 
+\textbf{segmento}.
+
+I \textbf{commenti} sono riferiti ad un'\textbf{attività} e scritti da un \textbf{utente}.
+
+\chapter{Progettazione concettuale}
+\section{Schema scheletro}
+\section{Raffinamenti proposti}
+\section{Schema concettuale finale}
 
 \end{document}
