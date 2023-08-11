@@ -86,7 +86,7 @@ relazioni con altri concetti.
     \textbf{Termine} & \textbf{Descrizione} & \textbf{Sinonimi} & \textbf{Relazioni} \\
     Utente & Persona che si registra all'applicazione. Può caricare le sue attività o salvare percorsi e segmenti fatti da altri utenti. Può interagire con altri utenti. & Persona & Attrezzatura, Attività, Percorso, Segmento\\ \hline
     Attrezzatura & Materiale utilizzato da un utente per svolgere le proprie attività. & Bici, Scarpe & Utente, Attività \\ \hline 
-	Attività & L'insieme di tutte le informazioni dell'attività sportiva svolta da un utente. & & Utente, Percorso\\ \hline
+	Attività & L'insieme di tutte le informazioni dell'attività sportiva svolta da un utente. & Sport & Utente, Percorso\\ \hline
     Percorso & Intera tratta percorsa in un'attività. & Itinerario & Attività, Segmento\\ \hline
     Segmento & Sezione del percorso con determinate caratteristiche. Possono essere creati dagli utenti. & Tratto & Percorso, Utente \\ \hline
     Riconoscimento & Titolo assegnato ad un utente sul segmento in base al tempo di impiegato. & Titolo & Utente, Segmento\\ \hline
@@ -108,21 +108,21 @@ utilizzare per calcolare calorie bruciate, potenza\dots
 
 L'\textbf{attrezzatura} è indicabile scegliendo tipologia di bici o marca di scarpe.
 
-Le \textbf{attività} devono specificare tipologia di sport, titolo, visibilità, \textbf{percorso}, giorno, distanza totale,
-tempo, velocità media\dots In base alla tipologia di sport hanno più o meno dati rilevanti. Le attività rese pubbliche 
-possono ricevere \textbf{commenti} e feedback da altri \textbf{utenti}.
+Le \textbf{attività} devono specificare titolo, visibilità, \textbf{percorso}, giorno, distanza totale,
+tempo, velocità media\dots In base all'attività hanno più o meno dati rilevanti. Le attività rese pubbliche 
+possono ricevere \textbf{commenti} e like da altri \textbf{utenti}.
 
 Il \textbf{percorso} è rappresentato da una traccia .gpx e da possibili \textbf{segmenti}.
 
 Un \textbf{segmento} è rappresentato da una traccia .gpx, una determinata caratteristica, un tempo di
-percorrenza associato, visibilità pubblica o privata. I segmenti sono dipendenti dalla tipologia di sport e possono 
+percorrenza associato, visibilità pubblica o privata. I segmenti sono relativi al tipo di \textbf{attività} e possono 
 essere creati dagli \textbf{utenti} se presenti nel \textbf{percorso} caricato in un attività e non ne sono presenti 
 di simili.
 
 Un \textbf{riconoscimento} può essere assegnato ad un \textbf{utente} in base al tempo impiegato su un determinato 
 \textbf{segmento}.
 
-I \textbf{commenti} sono riferiti ad un'\textbf{attività} e scritti da un \textbf{utente}.
+I \textbf{commenti} sono riferiti ad un'\textbf{attività} e scritti da un \textbf{utente}, possono ricevere like.
 
 \chapter{Progettazione concettuale}
 \section{Schema scheletro}
@@ -154,6 +154,11 @@ La auto-riferenziazione in utente serve per esprimere il concetto di utenti segu
     \caption{\emph{Schema raffinamento attrezzatura.}}
     \label{img:schema_attrezzatura}
 \end{figure}
+
+L'entità attrezzatura identificata da un nickname è univoca e rappresenta una generalizzazione delle due tipologie 
+di attrezzatura disponibili: bicicletta e scarpe, viene quindi utilizzata la specializzazione in queste due sottoclassi. 
+Devono esistere nel DB delle entità che contengano tutte le tipologie di bici o le marche di scarpe associabili a bici 
+e scarpe. L'attributo modello viene lasciato ad attrezzatura in quanto sia che si tratti di scarpe che di bici andrà specificato.
 
 \section{Schema concettuale finale}
 
