@@ -128,14 +128,33 @@ I \textbf{commenti} sono riferiti ad un'\textbf{attività} e scritti da un \text
 \section{Schema scheletro}
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{scheletro_corto.png}
+    \includegraphics[width=\textwidth]{scheletro.png}
     \centering
-    \caption{\emph{Schema scheletro con le principali entità}}
+    \caption{\emph{Schema scheletro con le principali entità.}}
     \label{img:schema_scheletro}
 \end{figure}
 
-
 \section{Raffinamenti proposti}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{utente.png}
+    \centering
+    \caption{\emph{Schema raffinamento utente.}}
+    \label{img:schema_utente}
+\end{figure}
+
+Per un utente, identificato da un codice univoco, è rappresentato il nome, il cognome,
+la data di nascita e opzionalmente il percorso ad una foto profilo caricata, una biografia,
+la residenza composta da città e provincia, il peso e l'altezza.
+La auto-riferenziazione in utente serve per esprimere il concetto di utenti seguiti e che seguono.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{attrezzatura.png}
+    \centering
+    \caption{\emph{Schema raffinamento attrezzatura.}}
+    \label{img:schema_attrezzatura}
+\end{figure}
+
 \section{Schema concettuale finale}
 
 \end{document}
