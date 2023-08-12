@@ -16,6 +16,7 @@
 
 \usepackage[italian]{cleveref}
 
+\usepackage{changepage}
 % \usepackage[none]{hyphenat} % Disabilita la divisione delle parole
 
 \usepackage{tabularx}
@@ -115,7 +116,8 @@ possono ricevere \textbf{commenti} e like da altri \textbf{utenti}.
 Il \textbf{percorso} è rappresentato da una traccia .gpx e da possibili \textbf{segmenti}.
 
 Un \textbf{segmento} è rappresentato da una traccia .gpx, una determinata caratteristica, un tempo di
-percorrenza associato, visibilità pubblica o privata. I segmenti sono relativi al tipo di \textbf{attività} e possono 
+percorrenza associato, visibilità pubblica o privata. Possono essere percorsi più volte durante un singolo
+percorso. I segmenti sono relativi al tipo di \textbf{attività} e possono 
 essere creati dagli \textbf{utenti} se presenti nel \textbf{percorso} caricato in un attività e non ne sono presenti 
 di simili.
 
@@ -167,6 +169,13 @@ e scarpe. L'attributo modello viene lasciato ad attrezzatura in quanto sia che s
     \label{img:schema_attivita}
 \end{figure}
 
+Un attività può essere di varie tipologia, per questo motivo la generalizzazione è 
+parziale ed esclusiva (esistono altre attività) e si specializza in tre entità con attributi 
+specifici ad esse. Ogni Attività è associata ad un percorso, il quale è univoco, e contiene
+o meno dei segmenti. Possono ricevere commenti scritti da utenti ed ogni commento ha un codice
+univoco riferito all'attività dato il grnade numero di commenti che potrebbero essere scritti
+nell'intero applicativo il numero potrebbe crescere troppo ed è preferibile tenerlo basso.
+
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{segmento.png}
     \centering
@@ -174,8 +183,47 @@ e scarpe. L'attributo modello viene lasciato ad attrezzatura in quanto sia che s
     \label{img:schema_segmento}
 \end{figure}
 
+Il segmento è un'entità che contiene tutti i segmenti esistenti, mentre il tempo di percorrenza
+del segmento durante l'attività viene registro tramite segmento percorso. 
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{segmenti_attivita.png}
+    \centering
+    \caption{\emph{Schema raffinamento segmenti e attività.}}
+    \label{img:schema_seg_att}
+\end{figure}
+
+Un percorso è associato ad un'attività e può contenere dei segmenti, mentre il tempo effettivo
+di percorrenza viene associato all'attività, identificato da un id di percorrenza
+e dal segmento stesso percorso, così è possibile percorrere un segmento più volte durante una'attività,
+mentre il percorso contine i segmenti una sola volta. 
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{perc_seg.png}
+    \centering
+    \caption{\emph{Schema raffinamento percorso e segmento}}
+    \label{img:schema_perc_seg}
+\end{figure}
+
+I percorsi e i segmenti hanno entrambi una traccia e si riferiscono a tratti di strada od altro percorsi
+durante un,attività, per questo motivo vengono generalizzati dall'entità traccia, dove l'attributo traccia
+rappresenta il percorso in memoria dove viene salvata la traccia .gpx.
 
 
 \section{Schema concettuale finale}
+
+    \newgeometry{margin=0cm}
+    \begin{figure}[p]
+        \centering
+        \includegraphics[width=\paperwidth]{definitivov-1.png}
+        
+    \end{figure}
+    
+    \begin{figure}[p]
+        \centering
+        \includegraphics[width=\paperwidth]{definitivov-2.png}
+    \end{figure}
+    
+\restoregeometry
 
 \end{document}
