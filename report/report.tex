@@ -46,7 +46,7 @@ di poter fornire una consultazione comoda per visualizzare i progressi del propr
 Una persona si registra e viene identificata univocamente nel sistema da un codice, anche un nome, cognome, 
 data di nascita; opzionalmente una foto profilo, una biografia, città e provincia, peso, altezza. 
 Si può anche indicare il tipo di attrezzatura utilizzata (tipologia di bici o marca di scarpe).
-Il tipo di esercizio, la durata dell'attività, il genere, gli anni, il peso e l'altezza possono servire per
+Il tipo di sport, la durata dell'attività, il genere, gli anni, il peso e l'altezza possono servire per
 calcolare le calorie spese, la potenza o altri dati utili. Un utente può seguire o essere seguito da altri 
 utenti (potrebbero essere suggeriti in base ad amicizie comuni). Ogni utente ha un registro delle proprie 
 attività. Possono anche essere salvati dei percorsi o dei segmenti, relativi ad attività di altri utenti, 
@@ -54,7 +54,7 @@ o proprie attività i quali vengono salvati sotto forma di file .gpx.
 
 Un percorso rappresenta l'intero itinerario dell'attività e può contenere o meno dei segmenti, mentre un 
 segmento è una sezione con determinate caratteristiche, quali salita, discesa, tratto difficile, 
-acque libere, \dots Ogni tratto completato ha un tempo di percorrenza associato. Le attività hanno i 
+acque libere\dots Ogni tratto completato ha un tempo di percorrenza associato. Le attività hanno i 
 propri segmenti e le proprie classifiche.
 
 Possono inoltre essere creati segmenti dagli utenti, a condizione che 
@@ -63,7 +63,7 @@ impostato come pubblico o privato. Possono essere assegnati dei riconoscimenti a
 tempi raggiunti sui segmenti, titoli come: più veloce di tutti, top 10, record personale\dots
 
 Le attività possono essere caricate, decidendo la visibilità, il titolo, una descrizine, il tipo si sport, 
-un percorso, un giorno, distanza totale, qualche foto, dislivello, velocità media, tempo, calorie bruciate, altitudine\dots 
+un percorso, un giorno, distanza totale, dislivello, velocità media, tempo, calorie bruciate, altitudine\dots 
 Vengono visualizzati anche i relativi segmenti del percorso. Possono poi essere commentate da altri 
 utenti in grado di assegare anche un apprezzamento.
 
@@ -88,6 +88,7 @@ relazioni con altri concetti.
     Utente & Persona che si registra all'applicazione. Può caricare le sue attività o salvare percorsi e segmenti fatti da altri utenti. Può interagire con altri utenti. & Persona & Attrezzatura, Attività, Percorso, Segmento\\ \hline
     Attrezzatura & Materiale utilizzato da un utente per svolgere le proprie attività. & Bici, Scarpe & Utente, Attività \\ \hline 
 	Attività & L'insieme di tutte le informazioni dell'attività sportiva svolta da un utente. & Sport & Utente, Percorso\\ \hline
+    Sport & Tipologia di attività effettuata. & Attività & Attività, Segmento\\ \hline
     Percorso & Intera tratta percorsa in un'attività. & Itinerario & Attività, Segmento\\ \hline
     Segmento & Sezione del percorso con determinate caratteristiche. Possono essere creati dagli utenti. & Tratto & Percorso, Utente \\ \hline
     Riconoscimento & Titolo assegnato ad un utente sul segmento in base al tempo di impiegato. & Titolo & Utente, Segmento\\ \hline
@@ -110,14 +111,16 @@ utilizzare per calcolare calorie bruciate, potenza\dots
 L'\textbf{attrezzatura} è indicabile scegliendo tipologia di bici o marca di scarpe.
 
 Le \textbf{attività} devono specificare titolo, visibilità, \textbf{percorso}, giorno, distanza totale,
-tempo, velocità media\dots In base all'attività hanno più o meno dati rilevanti. Le attività rese pubbliche 
+tempo, velocità media\dots In base allo \textbf{sport} effettuato hanno più o meno dati rilevanti. Le attività rese pubbliche 
 possono ricevere \textbf{commenti} e like da altri \textbf{utenti}.
+
+Lo \textbf{sport} relativo ad un'attività può essere caratterizzato o meno da dati rilevanti salvati, come dislivello o altitudine.
 
 Il \textbf{percorso} è rappresentato da una traccia .gpx e da possibili \textbf{segmenti}.
 
 Un \textbf{segmento} è rappresentato da una traccia .gpx, una determinata caratteristica, un tempo di
-percorrenza associato, visibilità pubblica o privata. Possono essere percorsi più volte durante un singolo
-percorso. I segmenti sono relativi al tipo di \textbf{attività} e possono 
+percorrenza associato in attività, visibilità pubblica o privata. Possono essere percorsi più volte durante un singolo
+percorso. I segmenti sono relativi al tipo di \textbf{sport} e possono 
 essere creati dagli \textbf{utenti} se presenti nel \textbf{percorso} caricato in un attività e non ne sono presenti 
 di simili.
 
@@ -163,18 +166,18 @@ Devono esistere nel DB delle entità che contengano tutte le tipologie di bici o
 e scarpe. L'attributo modello viene lasciato ad attrezzatura in quanto sia che si tratti di scarpe che di bici andrà specificato.
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{attivita.png}
+    \includegraphics[width=\textwidth]{attivita2.png}
     \centering
     \caption{\emph{Schema raffinamento attività.}}
     \label{img:schema_attivita}
 \end{figure}
 
-Un attività può essere di varie tipologia, per questo motivo la generalizzazione è 
-parziale ed esclusiva (esistono altre attività) e si specializza in tre entità con attributi 
-specifici ad esse. Ogni Attività è associata ad un percorso, il quale è univoco, e contiene
+Ogni attività è associata ad uno sport che può essere di varie tipologie, per questo motivo la 
+generalizzazione è parziale ed esclusiva (esistono altri sport) e si specializza in tre 
+entità con attributi specifici ad esse, un percorso, il quale è univoco, e contiene
 o meno dei segmenti. Possono ricevere commenti scritti da utenti ed ogni commento ha un codice
 univoco riferito all'attività dato il grnade numero di commenti che potrebbero essere scritti
-nell'intero applicativo il numero potrebbe crescere troppo ed è preferibile tenerlo basso.
+il numero potrebbe crescere troppo ed è preferibile tenerlo basso.
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{segmento.png}
@@ -185,6 +188,17 @@ nell'intero applicativo il numero potrebbe crescere troppo ed è preferibile ten
 
 Il segmento è un'entità che contiene tutti i segmenti esistenti, mentre il tempo di percorrenza
 del segmento durante l'attività viene registro tramite segmento percorso. 
+
+In questa maniera non riesco ad esprimere il concetto di segmento appartenente ad uno sport.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{sport_segmento.png}
+    \centering
+    \caption{\emph{Schema raffinamento caratteristica segmento.}}
+    \label{img:schema_sport_segmento}
+\end{figure}
+
+Per esprimere il vincolo precedente collego tramite associazione sport e segmento.
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{segmenti_attivita.png}
@@ -198,6 +212,9 @@ di percorrenza viene associato all'attività, identificato da un id di percorren
 e dal segmento stesso percorso, così è possibile percorrere un segmento più volte durante una'attività,
 mentre il percorso contine i segmenti una sola volta. 
 
+Rimane inespresso il vincolo per cui
+i segmenti contenuti nel percorso e quelli effettivamente eseguiti debbano essere gli stessi.
+
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{perc_seg.png}
     \centering
@@ -206,22 +223,22 @@ mentre il percorso contine i segmenti una sola volta.
 \end{figure}
 
 I percorsi e i segmenti hanno entrambi una traccia e si riferiscono a tratti di strada od altro percorsi
-durante un,attività, per questo motivo vengono generalizzati dall'entità traccia, dove l'attributo traccia
-rappresenta il percorso in memoria dove viene salvata la traccia .gpx.
+durante un'attività, per questo motivo vengono generalizzati dall'entità traccia, totale ed esclusiva,
+dove l'attributo traccia rappresenta il percorso in memoria nel quale viene salvata la traccia .gpx.
 
 
 \section{Schema concettuale finale}
 
-    \newgeometry{margin=0cm}
+\newgeometry{margin=0cm}
     \begin{figure}[p]
         \centering
-        \includegraphics[width=\paperwidth]{definitivov-1.png}
+        \includegraphics[width=\paperwidth]{definitivo2-1.png}
         
     \end{figure}
     
     \begin{figure}[p]
         \centering
-        \includegraphics[width=\paperwidth]{definitivov-2.png}
+        \includegraphics[width=\paperwidth]{definitivo2-2.png}
     \end{figure}
     
 \restoregeometry
