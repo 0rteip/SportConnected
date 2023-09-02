@@ -353,16 +353,16 @@ nella seguente tabella insieme alla loro frequenza.
     4 & Inserimento di una scarpa da parte di un utente & 18/Giorno \\ \hline
     5 & Assegnazione di un riconoscimento ad un utente & 16.000/Giorno\\ \hline
     6 & Visualizzazione di tutte le attivita dei seguiti da un utente, incluso percorso e sport associati & 9.000/Giorno \\ \hline
-    7 & Visualizzazione di tutte le attività di nuoto svolte in estate & 5/Anno \\ \hline
-    8\label{op_8} & Visualizzazione della distanza totale percorsa in un anno da un utente & 2.900/Giorno \\ \hline
-    9 & Visualizzazione dell'utente col miglior tempo su un dato segmento & 3.500/Giorno\\ \hline
+    7 & Visualizzazione dell'utente col miglior tempo su un dato segmento & 3.500/Giorno\\ \hline
+    8 & Visualizzazione di tutte le attività di nuoto svolte in estate & 5/Anno \\ \hline
+    9\label{op_8} & Visualizzazione della distanza totale percorsa in un anno da un utente & 2.900/Giorno \\ \hline
     10 & Visualizzazione delle migliori prestazioni per ogni segmento su un dato utente & 2/Mese \\ \hline
     
     \end{tabularx}
 \end{table}
 
 \newpage
-\section{Schemi di navigazione e tabelle degli accessi}
+\section{Tabelle degli accessi e schemi di navigazione}
 
 Si cerca ora di stimare i costi di accesso per le varie operazioni descritte in precedenza.
 Dove non dovesse risultare sufficiente la sola tabella degli accessi sarà fornito anche uno schema
@@ -371,6 +371,9 @@ Per il calcolo degli accessi i pesi delle operazioni in scrittura sono considera
 rispetto a quelli in lettura.
 
 \subsection*{01 - Registrazione di un nuovo utente}
+
+La registraione di un utente si riassume al semplice inserimento dei dati necessari all'entità
+utente.
 
 \begin{table}[h!]
     \centering
@@ -393,101 +396,6 @@ rispetto a quelli in lettura.
     \end{tabularx}
 
 
-\end{table}
-
-\subsection*{02 - Svolgimento di un'attività di ciclismo}
-
-\begin{figure}[H]
-    \includegraphics[width=0.8\textwidth]{svolgimento.png}
-    \centering
-    \caption{\emph{Schema di navigazione per lo svolgimento di un'attività.}}
-    \label{img:navigazione}
-\end{figure}
-
-
-Ogni percorso contiene circa 20 segmenti.
-
-\begin{table}[h!]
-    \centering
-    \renewcommand{\arraystretch}{1.4} % Altezza delle righe
-    \begin{tabularx}{\textwidth}{
-    >{\raggedright\arraybackslash}p{\dimexpr.35\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
-    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
-    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
-    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
-    }
-    \arrayrulecolor[HTML]{BDBFC3}
-    \rowcolor[HTML]{DFF8FE}
-    \textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
-    Utente & E & 1 & L \\ \hline
-    Svolge & A & 1 & S \\ \hline
-    Attività & E & 1 & S \\ \hline
-    Itinerario & A & 1 & S \\ \hline
-    Percorso & E & 1 & S \\ \hline
-    Effettuazione & A & 1 & S \\ \hline
-    Contiene & A & 20 & S \\ \hline
-    Esecuzione & A & 20 & S \\ \hline
-    Segmento Percorso & E & 20 & S \\ \hline
-    Percorrenza & A & 20 & S \\
-    
-    \rowcolor[HTML]{DFF8FE}
-    \multicolumn{4}{c}{
-        \textbf{Totale}: (1L + 85S) $\cdot$ 3.200 $\rightarrow$ 547.200 al giorno
-    } \\
-    \end{tabularx}
-\end{table}
-
-L'assegnazione ad un percorso dei segmenti corretti richiede l'utilizzo di un algoritmo 
-in grado di analizzarli ed ha come conseguenza che i costi di accesso potrebbero variare
-in base al numero dei segmenti. 
-Ipotizzando una distribuzione non omogenea nei segmenti tra gli sport, in particolare 
-considerando per il ciclismo $1/2$ dei segmenti (7.700.000) e una divisione equa per i restanti:
-
-\begin{table}[h!]
-    \centering
-    \renewcommand{\arraystretch}{1.4} % Altezza delle righe
-    \begin{tabularx}{\textwidth}{
-    >{\raggedright\arraybackslash}p{\dimexpr.35\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
-    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
-    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
-    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
-    }
-    \arrayrulecolor[HTML]{BDBFC3}
-    \rowcolor[HTML]{faecff}
-    \textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
-    Segmento & E & 7.700.000 & L \\ \hline
-    Caratteristica & A & 7.700.000 & L \\ \hline
-    Caratteristica segmento & E & 7.700.000 & L \\
-    
-    \rowcolor[HTML]{faecff}
-    \multicolumn{4}{c}{
-        \textbf{Totale}: 23.100.000L $\cdot$ 3.200 $\rightarrow$ $7.392 \times 10^{10}$ al giorno
-    } \\
-    \end{tabularx}
-\end{table}
-
-Per cercare di ridurre il numero degli accessi si è deciso di inserire una ridondanza in segmento.
-Grazie all'attributo Sport si può evitare di passare per \emph{Caratteristica segmento}.
-
-\begin{table}[h!]
-    \centering
-    \renewcommand{\arraystretch}{1.4} % Altezza delle righe
-    \begin{tabularx}{\textwidth}{
-    >{\raggedright\arraybackslash}p{\dimexpr.35\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
-    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
-    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
-    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
-    }
-    \arrayrulecolor[HTML]{BDBFC3}
-    \rowcolor[HTML]{DFF8FE}
-    \textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
-    Segmento & E & 7.700.000 & L \\ 
-    
-    \rowcolor[HTML]{DFF8FE}
-    \multicolumn{4}{c}{
-        \textbf{Totale}: 7.700.000L $\cdot$ 3.200 $\rightarrow$ $2.464 \times 10^{10}$ al giorno
-    } \\
-    \end{tabularx}
 \end{table}
 
 \subsection*{03 - Scrittura di un commento}
@@ -551,14 +459,14 @@ la scelta in fase di aggiunta.
 \subsection*{05 - Assegnazione di un riconoscimento ad un utente}
 
 \begin{figure}[H]
-    \includegraphics[width=0.8\textwidth]{riconoscimento schema.png}
+    \includegraphics[width=\textwidth]{riconoscimento schema.png}
     \centering
     \caption{\emph{Schema di navigazione per l'assegnazione di un riconoscimento.}}
     \label{img:riconoscimento_schema}
 \end{figure}
 
 
-\begin{table}[h!]
+\begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.4} % Altezza delle righe
     \begin{tabularx}{\textwidth}{
@@ -585,17 +493,20 @@ la scelta in fase di aggiunta.
     \end{tabularx}
 \end{table}
 
+
+
+
 \label{op_7}
-\subsection*{06 - Visualizzazione di tutte le attivitù dei seguiti da un utente}
+\subsection*{06 - Visualizzazione di tutte le attività dei seguiti da un utente}
 
 \begin{figure}[H]
-    \includegraphics[width=0.8\textwidth]{seguiti.png}
+    \includegraphics[width=\textwidth]{seguiti.png}
     \centering
     \caption{\emph{Schema di navigazione per le attività dei seguiti.}}
     \label{img:schema_seguiti}
 \end{figure}
 
-
+\newpage
 Supponendo che un utente segua in media 5 altri utenti.
 
 \begin{table}[h!]
@@ -626,7 +537,40 @@ Supponendo che un utente segua in media 5 altri utenti.
     \end{tabularx}
 \end{table}
 
-\subsection*{07 - Visualizzazione di tutte le attività di nuoto svolte in estate}
+
+\subsection*{07 - Visualizzazione dell'utente con il miglior tempo su un dato segmento}
+
+Ogni segmento viene percorso mediamente poco più di 3 volte.
+
+\begin{table}[h!]
+    \centering
+    \renewcommand{\arraystretch}{1.4} % Altezza delle righe
+    \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{\dimexpr.35\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
+    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    }
+    \arrayrulecolor[HTML]{BDBFC3}
+    \rowcolor[HTML]{DFF8FE}
+    \textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+    Percorrenza & A & 3 & L \\ \hline
+    Segmento percorso & E & 3 & L \\ \hline
+    Esecuzione & A & 3 & L \\ \hline
+    Attività & E & 3 & L \\ \hline
+    Svolge & A & 3 & L \\ \hline
+    Utente & E & 3 & L \\    
+
+    \rowcolor[HTML]{DFF8FE}
+    \multicolumn{4}{c}{
+        \textbf{Totale}: 6L $\cdot$ 3.500 $\rightarrow$ $21.000$ al giorno
+    } \\
+    \end{tabularx}
+\end{table}
+
+
+
+\subsection*{08 - Visualizzazione di tutte le attività di nuoto svolte in estate}
 
 Siccome ogni attività ha associata la data di effettuazione le operazioni da svolgere
 si limitano alla lettura di tutte le attività di nuoto e al controllo di quelle
@@ -655,51 +599,20 @@ sarà necessario un processo simile a quello usato per \hyperref[op_7]{l'operazi
     \end{tabularx}
 \end{table}
 
-Similmente può essere fatto per \hyperref[op_8]{l'operazione 8}, dove è sufficiente leggere tutte le attività
+Similmente può essere fatto per \hyperref[op_8]{l'operazione 9}, dove è sufficiente leggere tutte le attività
 di un singolo utente e fare i calcoli necessari.
 
-
-\subsection*{09 - Visualizzazione dell'utente con il miglior tempo su un dato segmento}
-
-Ogni segmento viene percorso mediamente poco più di 3 volte
-
-\begin{table}[h!]
-    \centering
-    \renewcommand{\arraystretch}{1.4} % Altezza delle righe
-    \begin{tabularx}{\textwidth}{
-    >{\raggedright\arraybackslash}p{\dimexpr.35\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
-    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
-    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
-    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
-    }
-    \arrayrulecolor[HTML]{BDBFC3}
-    \rowcolor[HTML]{DFF8FE}
-    \textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
-    Percorrenza & A & 3 & L \\ \hline
-    Segmento percorso & E & 3 & L \\ \hline
-    Esecuzione & A & 3 & L \\ \hline
-    Attività & E & 3 & L \\ \hline
-    Svolge & A & 3 & L \\ \hline
-    Utente & E & 3 & L \\    
-
-    \rowcolor[HTML]{DFF8FE}
-    \multicolumn{4}{c}{
-        \textbf{Totale}: 6L $\cdot$ 3.500 $\rightarrow$ $21.000$ al giorno
-    } \\
-    \end{tabularx}
-\end{table}
 
 \subsection*{10 - Visualizzazione delle migliori prestazioni per ogni segmento dato un utente}
 
 \begin{figure}[H]
-    \includegraphics[width=0.8\textwidth]{prestazioni.png}
+    \includegraphics[width=\textwidth]{prestazioni.png}
     \centering
     \caption{\emph{Schema di navigazione per le migliori prestazioni.}}
     \label{img:schema_prestazioni}
 \end{figure}
 
-
-Ogni utente ha in media 130 attività
+Ogni utente ha in media 130 attività svolte.
 
 \begin{table}[h!]
     \centering
@@ -728,5 +641,131 @@ Ogni utente ha in media 130 attività
     \end{tabularx}
 \end{table}
 
+
+\newpage
+\section{Analisi delle ridondanze}
+
+\subsection*{02 - Svolgimento di un'attività di ciclismo}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{svolgimento.png}
+    \centering
+    \caption{\emph{Schema di navigazione per lo svolgimento di un'attività.}}
+    \label{img:navigazione}
+\end{figure}
+
+\newpage
+Ogni percorso contiene circa 20 segmenti.
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.4} % Altezza delle righe
+    \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{\dimexpr.35\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
+    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    }
+    \arrayrulecolor[HTML]{BDBFC3}
+    \rowcolor[HTML]{DFF8FE}
+    \textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+    Utente & E & 1 & L \\ \hline
+    Svolge & A & 1 & S \\ \hline
+    Attività & E & 1 & S \\ \hline
+    Itinerario & A & 1 & S \\ \hline
+    Percorso & E & 1 & S \\ \hline
+    Effettuazione & A & 1 & S \\ \hline
+    Contiene & A & 20 & S \\ \hline
+    Esecuzione & A & 20 & S \\ \hline
+    Segmento Percorso & E & 20 & S \\ \hline
+    Percorrenza & A & 20 & S \\
+    
+    \rowcolor[HTML]{DFF8FE}
+    \multicolumn{4}{c}{
+        \textbf{Totale}: (1L + 85S) $\cdot$ 3.200 $\rightarrow$ 547.200 al giorno
+    } \\
+    \end{tabularx}
+\end{table}
+
+L'assegnazione ad un percorso dei segmenti corretti richiede l'utilizzo di un algoritmo 
+in grado di analizzarli ed ha come conseguenza che i costi di accesso potrebbero variare
+in base al numero dei segmenti. 
+Ipotizzando una distribuzione non omogenea nei segmenti tra gli sport, in particolare 
+considerando per il ciclismo $1/2$ dei segmenti (7.700.000) e una divisione equa per i restanti:
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.4} % Altezza delle righe
+    \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{\dimexpr.35\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
+    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    }
+    \arrayrulecolor[HTML]{BDBFC3}
+    \rowcolor[HTML]{faecff}
+    \textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+    Segmento & E & 7.700.000 & L \\ \hline
+    Caratteristica & A & 7.700.000 & L \\ \hline
+    Caratteristica segmento & E & 7.700.000 & L \\
+    
+    \rowcolor[HTML]{faecff}
+    \multicolumn{4}{c}{
+        \textbf{Totale}: 23.100.000L $\cdot$ 3.200 $\rightarrow$ $7.392 \times 10^{10}$ al giorno
+    } \\
+    \end{tabularx}
+\end{table}
+
+Per cercare di ridurre il numero degli accessi si è deciso di inserire una ridondanza in segmento.
+Grazie all'attributo Sport si può evitare di passare per \emph{Caratteristica segmento}.
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.4} % Altezza delle righe
+    \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{\dimexpr.35\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
+    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    }
+    \arrayrulecolor[HTML]{BDBFC3}
+    \rowcolor[HTML]{DFF8FE}
+    \textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+    Segmento & E & 7.700.000 & L \\ 
+    
+    \rowcolor[HTML]{DFF8FE}
+    \multicolumn{4}{c}{
+        \textbf{Totale}: 7.700.000L $\cdot$ 3.200 $\rightarrow$ $2.464 \times 10^{10}$ al giorno
+    } \\
+    \end{tabularx}
+\end{table}
+
+
+\newpage
+\section{Raffinamento dello schema}
+
+\subsection*{Eliminazione delle gerarchie}
+
+Per la gerarchia \emph{Attività} (p, e) si è scelto di adottare il collasso verso l'alto dato che le
+entità figlie sono accedute in maniera contestuale a quella padre. Risulta inoltre comodo avere
+tutti i parametri relativi ad un'attività in un'entità unica. 
+
+Per la gerarchia \emph{Traccia} (t, e) si é scelto di adottare il collasso verso il basso siccome gli
+accessi alle entità figlie sono distinti e non si ha necessità che l'identificatore sia univoco.
+Scelta analoga è stata fatta per la gerarchia \emph{Attrezzatura} (t, e), con differenza nella scelta
+dell'identificatore.
+
+\subsection*{Eliminazione degli attributi composti}
+
+L'attributo composto \emph{residenza} nell'entità \emph{Utente} é stato scomposto nelle sue 
+componenti, sarà poi necessario controllare a livello applicativo che i valori 
+vengano inseriti in maniera coerente.
+
+\subsection*{Scelta delle chiavi primarie}
+
+Nello schema sono già evidenziate tutte le chiavi primarie per la maggior
+parte delle entità. Per l'entità \emph{Riconoscimento utente} si sceglie di utilizzare come chiave
+primaria l'associazione con \emph{Utente} e \emph{Segmento}, lasciando il rimanente vincolo (assegnare
+un solo riconoscimento per utente) da implementare a livello applicativo.
 
 \end{document}
