@@ -326,7 +326,7 @@ anche utenti più o meno attivi e una zona più ampia i dati varierebbero drasti
     Assegnazione riconoscimento & A & 55.440.000\\ \hline
     Riconoscimento & E & 8 \\ \hline
 
-    Follow & A & 120.000 \\
+    Follow & A & 180.000 \\
     \end{tabularx}
 \end{center}
 
@@ -350,14 +350,13 @@ nella seguente tabella insieme alla loro frequenza.
     1 & Registrazione di un nuovo utente & 40/Giorno \\ \hline
     2 & Svolgimento di un'attività di ciclismo & 3.200/Giorno \\ \hline
     3 & Scrittura di un commento & 24.000/Giorno \\ \hline
-    4 & Inserimento di una scarpa/bicicletta da parte di un utente & 28/Giorno \\ \hline
+    4 & Inserimento di una scarpa da parte di un utente & 18/Giorno \\ \hline
     5 & Assegnazione di un riconoscimento ad un utente & 16.000/Giorno\\ \hline
     6 & Visualizzazione di tutte le attività di nuoto svolte in estate & 5/Anno \\ \hline
-    7 & Visualizzazione di tutte le attivita dei seguiti da un utente & 9.000/Giorno \\ \hline
-    8 & Visualizzazione della distanza totale percorsa in un anno da un utente & 2.900/Giorno \\ \hline
-    9 & Visualizzazione delle migliori prestazioni su tutti i segmenti di un utente & 2.000/Giorno \\ \hline
-    10 & Visualizzazione del miglior tempo su un dato segmento & 3.500/Giorno\\ \hline
-    11 & Visualizzazione di tutte le attività di un determinato sport di un utente & 1.300/Giorno \\ \hline
+    7 & Visualizzazione di tutte le attivita dei seguiti da un utente, incluso percorso e sport associati & 9.000/Giorno \\ \hline
+    8\label{op_8} & Visualizzazione della distanza totale percorsa in un anno da un utente & 2.900/Giorno \\ \hline
+    9 & Visualizzazione dell'utente col miglior tempo su un dato segmento & 3.500/Giorno\\ \hline
+    10 & Visualizzazione delle migliori prestazioni per ogni segmento su un dato utente & 2/Mese \\ \hline
     
     \end{tabularx}
 \end{table}
@@ -367,15 +366,15 @@ nella seguente tabella insieme alla loro frequenza.
 Per il calcolo degli accessi i pesi delle operazioni in scrittura sono considerati doppi
 rispetto a quelli in lettura.
 
-\subsection*{Registrazione di un nuovo utente}
+\subsection*{01 - Registrazione di un nuovo utente}
 
 \begin{table}[h!]
     \centering
     \renewcommand{\arraystretch}{1.4} % Altezza delle righe
     \begin{tabularx}{\textwidth}{
-    >{\raggedright\arraybackslash}p{\dimexpr.3\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
+    >{\raggedright\arraybackslash}p{\dimexpr.35\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
     >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
-    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
     >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
     }
     \arrayrulecolor[HTML]{BDBFC3}
@@ -390,7 +389,9 @@ rispetto a quelli in lettura.
     \end{tabularx}
 
 
-\end{table}\subsection*{Svolgimento di un'attività di ciclismo}
+\end{table}
+
+\subsection*{02 - Svolgimento di un'attività di ciclismo}
 
 Ogni percorso contiene circa 20 segmenti.
 
@@ -398,9 +399,9 @@ Ogni percorso contiene circa 20 segmenti.
     \centering
     \renewcommand{\arraystretch}{1.4} % Altezza delle righe
     \begin{tabularx}{\textwidth}{
-    >{\raggedright\arraybackslash}p{\dimexpr.3\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
+    >{\raggedright\arraybackslash}p{\dimexpr.35\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
     >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
-    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
     >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
     }
     \arrayrulecolor[HTML]{BDBFC3}
@@ -434,9 +435,9 @@ considerando per il ciclismo $1/2$ dei segmenti (7.700.000) e una divisione equa
     \centering
     \renewcommand{\arraystretch}{1.4} % Altezza delle righe
     \begin{tabularx}{\textwidth}{
-    >{\raggedright\arraybackslash}p{\dimexpr.3\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
+    >{\raggedright\arraybackslash}p{\dimexpr.35\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
     >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
-    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
     >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
     }
     \arrayrulecolor[HTML]{BDBFC3}
@@ -460,9 +461,9 @@ Grazie all'attributo Sport si può evitare di passare per \emph{Caratteristica s
     \centering
     \renewcommand{\arraystretch}{1.4} % Altezza delle righe
     \begin{tabularx}{\textwidth}{
-    >{\raggedright\arraybackslash}p{\dimexpr.3\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
+    >{\raggedright\arraybackslash}p{\dimexpr.35\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
     >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
-    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
     >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
     }
     \arrayrulecolor[HTML]{BDBFC3}
@@ -476,5 +477,219 @@ Grazie all'attributo Sport si può evitare di passare per \emph{Caratteristica s
     } \\
     \end{tabularx}
 \end{table}
+
+\subsection*{03 - Scrittura di un commento}
+
+Un commento deve essere scritto da un utente e riferito ad un'attività.
+
+\begin{table}[h!]
+    \centering
+    \renewcommand{\arraystretch}{1.4} % Altezza delle righe
+    \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{\dimexpr.35\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
+    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    }
+    \arrayrulecolor[HTML]{BDBFC3}
+    \rowcolor[HTML]{DFF8FE}
+    \textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+    Utente & E & 1 & L \\ \hline
+    Scrive & A & 1 & S \\ \hline
+    Commento & E & 1 & S \\ \hline
+    Riceve & A & 1 & S \\
+    
+    \rowcolor[HTML]{DFF8FE}
+    \multicolumn{4}{c}{
+        \textbf{Totale}: (1L + 3S) $\cdot$ 24.000 $\rightarrow$ $168.000$ al giorno
+    } \\
+    \end{tabularx}
+\end{table}
+
+\subsection*{04 - Inserimento di una scarpa da parte di un utente}
+
+L'inserimento di una scarpa richiede la lettura di tutte le marche presenti per permettere
+la scelta in fase di aggiunta.
+
+\begin{table}[h!]
+    \centering
+    \renewcommand{\arraystretch}{1.4} % Altezza delle righe
+    \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{\dimexpr.35\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
+    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    }
+    \arrayrulecolor[HTML]{BDBFC3}
+    \rowcolor[HTML]{DFF8FE}
+    \textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+    Utente & E & 1 & L \\ \hline
+    Utilizza & A & 1 & S \\ \hline
+    Attrezzatura & E & 1 & S \\ \hline
+    Marca scarpe & A & 1 & S \\ \hline
+    Marca & E & 200 & L \\
+    
+    \rowcolor[HTML]{DFF8FE}
+    \multicolumn{4}{c}{
+        \textbf{Totale}: (201L + 3S) $\cdot$ 18 $\rightarrow$ $3.726$ al giorno
+    } \\
+    \end{tabularx}
+\end{table}
+
+\subsection*{05 - Assegnazione di un riconoscimento ad un utente}
+
+\begin{table}[h!]
+    \centering
+    \renewcommand{\arraystretch}{1.4} % Altezza delle righe
+    \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{\dimexpr.35\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
+    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    }
+    \arrayrulecolor[HTML]{BDBFC3}
+    \rowcolor[HTML]{DFF8FE}
+    \textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+    Utente & E & 1 & L \\ \hline
+    Elogio & A & 1 & S \\ \hline
+    Segmento & E & 1 & L \\ \hline
+    Riconoscimento segmento & A & 1 & S \\ \hline
+    Riconoscimento & E & 1 & L \\ \hline
+    Assegnazione riconoscimento & A & 1 & S \\ \hline
+    Riconoscimento utente & E & 1 & S \\
+    
+    \rowcolor[HTML]{DFF8FE}
+    \multicolumn{4}{c}{
+        \textbf{Totale}: (3L + 4S) $\cdot$ 16.000 $\rightarrow$ $176.000$ al giorno
+    } \\
+    \end{tabularx}
+\end{table}
+
+\subsection*{06 - Visualizzazione di tutte le attività di nuoto svolte in estate}
+
+Siccome ogni attività ha associata la data di effettuazione le operazioni da svolgere
+si limitano alla lettura di tutte le attività di nuoto e al controllo di quelle
+svolte in estate. Se poi si necessita di visualizzare anche i relativi percorsi
+sarà necessario un processo simile a quello usato per \hyperref[op_8]{l'operazione 7}.
+
+\begin{table}[h!]
+    \centering
+    \renewcommand{\arraystretch}{1.4} % Altezza delle righe
+    \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{\dimexpr.35\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
+    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    }
+    \arrayrulecolor[HTML]{BDBFC3}
+    \rowcolor[HTML]{DFF8FE}
+    \textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+    Attività & E & 650.000 & L \\ 
+
+    
+    \rowcolor[HTML]{DFF8FE}
+    \multicolumn{4}{c}{
+        \textbf{Totale}: 650.000L $\cdot$ 5 $\rightarrow$ $3.250.000$ all'anno
+    } \\
+    \end{tabularx}
+\end{table}
+
+Similmente può essere fatto per \hyperref[op_8]{l'operazione 8}, dove è sufficiente leggere tutte le attività
+di un singolo utente e fare i calcoli necessari.
+
+\label{op_7}
+\subsection*{07 - Visualizzazione di tutte le attivita dei seguiti da un utente}
+
+Supponendo che un utente segua in media 5 altri utenti.
+
+\begin{table}[h!]
+    \centering
+    \renewcommand{\arraystretch}{1.4} % Altezza delle righe
+    \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{\dimexpr.35\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
+    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    }
+    \arrayrulecolor[HTML]{BDBFC3}
+    \rowcolor[HTML]{DFF8FE}
+    \textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+    Follow & A & 5 & L \\ \hline
+    Utente & E & 5 & L \\ \hline
+    Svolge & A & 5 & L \\ \hline
+    Attività & E & 5 & L \\ \hline
+    Itinerario & A & 5 & L \\ \hline
+    Percorso & E & 5 & L \\ \hline
+    Effettuazione & A & 5 & L \\ \hline
+    Sport & E & 5 & L \\
+
+    \rowcolor[HTML]{DFF8FE}
+    \multicolumn{4}{c}{
+        \textbf{Totale}: 40L $\cdot$ 9.000 $\rightarrow$ $360.000$ al giorno
+    } \\
+    \end{tabularx}
+\end{table}
+
+\subsection*{09 - Visualizzazione dell'utente con il miglior tempo su un dato segmento}
+
+Ogni segmento viene percorso mediamente poco più di 3 volte
+
+\begin{table}[h!]
+    \centering
+    \renewcommand{\arraystretch}{1.4} % Altezza delle righe
+    \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{\dimexpr.35\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
+    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    }
+    \arrayrulecolor[HTML]{BDBFC3}
+    \rowcolor[HTML]{DFF8FE}
+    \textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+    Percorrenza & A & 3 & L \\ \hline
+    Segmento percorso & E & 3 & L \\ \hline
+    Esecuzione & A & 3 & L \\ \hline
+    Attività & E & 3 & L \\ \hline
+    Svolge & A & 3 & L \\ \hline
+    Utente & E & 3 & L \\    
+
+    \rowcolor[HTML]{DFF8FE}
+    \multicolumn{4}{c}{
+        \textbf{Totale}: 6L $\cdot$ 3.500 $\rightarrow$ $21.000$ al giorno
+    } \\
+    \end{tabularx}
+\end{table}
+
+\subsection*{10 - Visualizzazione delle migliori prestazioni per ogni segmento su un dato utente}
+
+Ogni utente ha in media 130 attività
+
+\begin{table}[h!]
+    \centering
+    \renewcommand{\arraystretch}{1.4} % Altezza delle righe
+    \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{\dimexpr.35\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
+    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    }
+    \arrayrulecolor[HTML]{BDBFC3}
+    \rowcolor[HTML]{DFF8FE}
+    \textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+    
+    Svolge & A & 130 & L \\ \hline
+    Attività & E & 130 & L \\ \hline
+    Esecuzione & A & 2.600 & L \\ \hline
+    Segmento percorso & E & 2.600 & L \\ \hline
+    Percorrenza & A & 2.600 & L \\ \hline
+    Segmento & E & 2.600 & L \\ \hline
+
+    \rowcolor[HTML]{DFF8FE}
+    \multicolumn{4}{c}{
+        \textbf{Totale}: 10.660L $\cdot$ 2 $\rightarrow$ $21.320$ al mese
+    } \\
+    \end{tabularx}
+\end{table}
+
 
 \end{document}
