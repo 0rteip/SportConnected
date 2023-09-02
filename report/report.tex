@@ -75,7 +75,7 @@ relazioni con altri concetti.
 
 \begin{table}[h!]
     \centering
-    \renewcommand{\arraystretch}{1.5} % Altezza delle righe
+    \renewcommand{\arraystretch}{1.4} % Altezza delle righe
     \begin{tabularx}{\textwidth}{
         >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
         >{\raggedright\arraybackslash}p{\dimexpr.47\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
@@ -83,7 +83,7 @@ relazioni con altri concetti.
         >{\raggedright\arraybackslash}p{\dimexpr.18\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 4
         }
     \arrayrulecolor[HTML]{BDBFC3}
-    \rowcolor[HTML]{cef3fe} 
+    \rowcolor[HTML]{DFF8FE} 
     \textbf{Termine} & \textbf{Descrizione} & \textbf{Sinonimi} & \textbf{Relazioni} \\
     Utente & Persona che si registra all'applicazione. Può caricare le sue attività o salvare percorsi e segmenti fatti da altri utenti. Può interagire con altri utenti. & Persona & Attrezzatura, Attività, Commento, Percorso, Segmento\\ \hline
     Attrezzatura & Materiale utilizzato da un utente per svolgere le proprie attività. & Bici, Scarpe & Utente \\ \hline 
@@ -247,7 +247,7 @@ da un'utenza ridotta e mediamente attivita in un periodo di un anno e una zona r
 anche utenti più o meno attivi e una zona più ampia i dati varierebbero drasticamente.
 
 \begin{center}
-    \renewcommand{\arraystretch}{1.5}
+    \renewcommand{\arraystretch}{1.4}
 
      % Altezza delle righe
     \begin{tabularx}{\textwidth}{
@@ -258,7 +258,7 @@ anche utenti più o meno attivi e una zona più ampia i dati varierebbero drasti
         
         
     \arrayrulecolor[HTML]{BDBFC3}
-    \rowcolor[HTML]{cef3fe} 
+    \rowcolor[HTML]{DFF8FE} 
     \textbf{Concetto} & \textbf{Costrutto} & \textbf{Volume} \\
     Utente & E & 20.000\\ \hline
 
@@ -278,7 +278,7 @@ anche utenti più o meno attivi e una zona più ampia i dati varierebbero drasti
     Percorso & E & 2.600.000 \\ \hline
 
     Segmento percorso & E & 52.000.000 \\ \hline
-    Eseguzione & A & 52.000.000 \\ \hline
+    Esecuzione & A & 52.000.000 \\ \hline
     Percorrenza & A & 52.000.000 \\ \hline
     Contiene & A & 52.000.000
 
@@ -290,7 +290,7 @@ anche utenti più o meno attivi e una zona più ampia i dati varierebbero drasti
         >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
         }
     \arrayrulecolor[HTML]{BDBFC3}
-    \rowcolor[HTML]{cef3fe} 
+    \rowcolor[HTML]{DFF8FE} 
     \textbf{Concetto} & \textbf{Costrutto} & \textbf{Volume} \\
 
     Segmento & E & 15.400.000 \\ \hline
@@ -338,17 +338,17 @@ nella seguente tabella insieme alla loro frequenza.
 
 \begin{table}[h!]
     \centering
-    \renewcommand{\arraystretch}{1.5} % Altezza delle righe
+    \renewcommand{\arraystretch}{1.4} % Altezza delle righe
     \begin{tabularx}{\textwidth}{
     >{\raggedright\arraybackslash}p{\dimexpr.12\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
     >{\raggedright\arraybackslash}p{\dimexpr.68\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
     >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
     }
     \arrayrulecolor[HTML]{BDBFC3}
-    \rowcolor[HTML]{cef3fe}
+    \rowcolor[HTML]{DFF8FE}
     \textbf{Codice} & \textbf{Operazioe} & \textbf{Frequenza} \\
     1 & Registrazione di un nuovo utente & 40/Giorno \\ \hline
-    2 & Svolgimento di un'attività & 8.000/Giorno \\ \hline
+    2 & Svolgimento di un'attività di ciclismo & 3.200/Giorno \\ \hline
     3 & Scrittura di un commento & 24.000/Giorno \\ \hline
     4 & Inserimento di una scarpa/bicicletta da parte di un utente & 28/Giorno \\ \hline
     5 & Assegnazione di un riconoscimento ad un utente & 16.000/Giorno\\ \hline
@@ -364,23 +364,117 @@ nella seguente tabella insieme alla loro frequenza.
 
 \section{Schemi di navigazione e tabelle degli accessi}
 
+Per il calcolo degli accessi i pesi delle operazioni in scrittura sono considerati doppi
+rispetto a quelli in lettura.
+
 \subsection*{Registrazione di un nuovo utente}
 
 \begin{table}[h!]
     \centering
-    \renewcommand{\arraystretch}{1.5} % Altezza delle righe
+    \renewcommand{\arraystretch}{1.4} % Altezza delle righe
     \begin{tabularx}{\textwidth}{
-    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
+    >{\raggedright\arraybackslash}p{\dimexpr.3\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
     >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
     >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
-    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
     }
     \arrayrulecolor[HTML]{BDBFC3}
-    \rowcolor[HTML]{cef3fe}
+    \rowcolor[HTML]{DFF8FE}
     \textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+    Utente & E & 1 & S \\
 
+    \rowcolor[HTML]{DFF8FE}
+    \multicolumn{4}{c}{
+        \textbf{Totale}: 1S $\cdot$ 40 $\rightarrow$ 80 al giorno
+    } \\
+    \end{tabularx}
+
+
+\end{table}\subsection*{Svolgimento di un'attività di ciclismo}
+
+Ogni percorso contiene circa 20 segmenti.
+
+\begin{table}[h!]
+    \centering
+    \renewcommand{\arraystretch}{1.4} % Altezza delle righe
+    \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{\dimexpr.3\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
+    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
+    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    }
+    \arrayrulecolor[HTML]{BDBFC3}
+    \rowcolor[HTML]{DFF8FE}
+    \textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+    Utente & E & 1 & L \\ \hline
+    Svolge & A & 1 & S \\ \hline
+    Attività & E & 1 & S \\ \hline
+    Itinerario & A & 1 & S \\ \hline
+    Percorso & E & 1 & S \\ \hline
+    Effettuazione & A & 1 & S \\ \hline
+    Contiene & A & 20 & S \\ \hline
+    Esecuzione & A & 20 & S \\ \hline
+    Segmento Percorso & E & 20 & S \\ \hline
+    Percorrenza & A & 20 & S \\
+    
+    \rowcolor[HTML]{DFF8FE}
+    \multicolumn{4}{c}{
+        \textbf{Totale}: (1L + 85S) $\cdot$ 3.200 $\rightarrow$ 547.200 al giorno
+    } \\
     \end{tabularx}
 \end{table}
 
+L'assegnazione ad un percorso dei segmenti corretti richiede l'utilizzo di un algoritmo 
+in grado di analizzarli ed ha come conseguenza che i costi di accesso potrebbero variare
+in base al numero dei segmenti. 
+Ipotizzando una distribuzione non omogenea nei segmenti tra gli sport, in particolare 
+considerando per il ciclismo $1/2$ dei segmenti (7.700.000) e una divisione equa per i restanti:
+
+\begin{table}[h!]
+    \centering
+    \renewcommand{\arraystretch}{1.4} % Altezza delle righe
+    \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{\dimexpr.3\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
+    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
+    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    }
+    \arrayrulecolor[HTML]{BDBFC3}
+    \rowcolor[HTML]{faecff}
+    \textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+    Segmento & E & 7.700.000 & L \\ \hline
+    Caratteristica & A & 7.700.000 & L \\ \hline
+    Caratteristica segmento & E & 7.700.000 & L \\
+    
+    \rowcolor[HTML]{faecff}
+    \multicolumn{4}{c}{
+        \textbf{Totale}: 23.100.000L $\cdot$ 3.200 $\rightarrow$ $7.392 \times 10^{10}$ al giorno
+    } \\
+    \end{tabularx}
+\end{table}
+
+Per cercare di ridurre il numero degli accessi si è deciso di inserire una ridondanza in segmento.
+Grazie all'attributo Sport si può evitare di passare per \emph{Caratteristica segmento}.
+
+\begin{table}[h!]
+    \centering
+    \renewcommand{\arraystretch}{1.4} % Altezza delle righe
+    \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{\dimexpr.3\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
+    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
+    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    }
+    \arrayrulecolor[HTML]{BDBFC3}
+    \rowcolor[HTML]{DFF8FE}
+    \textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+    Segmento & E & 7.700.000 & L \\ 
+    
+    \rowcolor[HTML]{DFF8FE}
+    \multicolumn{4}{c}{
+        \textbf{Totale}: 7.700.000L $\cdot$ 3.200 $\rightarrow$ $2.464 \times 10^{10}$ al giorno
+    } \\
+    \end{tabularx}
+\end{table}
 
 \end{document}
