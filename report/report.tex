@@ -102,7 +102,7 @@ riformulando la richiesta in maniera che risulti più chiara e fruibile per la r
 
 \vspace{12pt}
 
-Per ogni \textbf{utente} vengono salvati un codice, nome, cognome, data di nascita e opzionalmente una foto profilo,
+Per ogni \textbf{utente} vengono salvati un codice, nome, cognome, data di nascita, sesso e opzionalmente una foto profilo,
 biografia, città e provincia, peso, altezza, \textbf{attrezzatura} utilizzata. Un utente può seguire o essere seguito 
 da altri utenti. Ad ogni utente vengono associate le relative \textbf{attività} e può salvare \textbf{percorsi} o 
 \textbf{segmenti} di altri utenti. Le informazioni sull'utente unite a quelle dell'\textbf{attività} potrebbero essere
@@ -144,7 +144,7 @@ I \textbf{commenti} sono riferiti ad un'\textbf{attività} e scritti da un \text
 \section{Raffinamenti proposti}
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{utente.png}
+    \includegraphics[width=.8\textwidth]{utente.png}
     \centering
     \caption{\emph{Schema raffinamento utente.}}
     \label{img:schema_utente}
@@ -156,7 +156,7 @@ la residenza composta da città e provincia, il peso e l'altezza.
 La auto-riferenziazione in utente serve per esprimere il concetto di utenti seguiti e che seguono altri utenti.
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{attrezzatura.png}
+    \includegraphics[width=.8\textwidth]{attrezzatura.png}
     \centering
     \caption{\emph{Schema raffinamento attrezzatura.}}
     \label{img:schema_attrezzatura}
@@ -169,7 +169,7 @@ scarpe associabili a bici e scarpe. L'attributo modello viene lasciato ad attrez
 di bici andrà specificato e sarà inserito a piacere dall'utente.
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{attivita.png}
+    \includegraphics[width=.8\textwidth]{attivita.png}
     \centering
     \caption{\emph{Schema raffinamento attività.}}
     \label{img:schema_attivita}
@@ -185,7 +185,7 @@ univoco riferito all'attività dato il grande numero di commenti che potrebbero 
 il numero potrebbe crescere troppo ed è preferibile tenerlo basso.
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{segmento.png}
+    \includegraphics[width=.8\textwidth]{segmento.png}
     \centering
     \caption{\emph{Schema raffinamento segmento.}}
     \label{img:schema_segmento}
@@ -198,7 +198,7 @@ Rimane inespresso il vincolo per il quale i segmenti facenti parte del percorso 
 di segmento percorso collegato ad attività.
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{segm.png}
+    \includegraphics[width=.8\textwidth]{segm.png}
     \centering
     \caption{\emph{Schema raffinamento percorso e segmento.}}
     \label{img:schema_perc_seg}
@@ -210,7 +210,7 @@ con generalizzazione totale ed esclusiva, dove l'attributo traccia rappresenta i
 nel quale viene salvata la traccia .gpx.
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{riconoscimento.png}
+    \includegraphics[width=.8\textwidth]{riconoscimento.png}
     \centering
     \caption{\emph{Schema raffinamento riconoscimento.}}
     \label{img:schema_riconoscimento}
@@ -223,6 +223,7 @@ all'utente che ha creato un segmento.
 
 
 \section{Schema concettuale finale}
+Pagina successiva.
 
 \newgeometry{margin=0cm}
     \begin{figure}[p]
@@ -241,6 +242,9 @@ all'utente che ha creato un segmento.
 \chapter{Progettazione Logica}
 
 \section{Stima dei volumi}
+La stima dei volumi è stata effettuata considerando i dati che un sistema del genere potrebbe generare
+da un'utenza ridotta e mediamente attivita in un periodo di un anno e una zona ristretta. Se si considerassero 
+anche utenti più o meno attivi e una zona più ampia i dati varierebbero drasticamente.
 
 \begin{center}
     \renewcommand{\arraystretch}{1.5}
@@ -276,12 +280,7 @@ all'utente che ha creato un segmento.
     Segmento percorso & E & 52.000.000 \\ \hline
     Eseguzione & A & 52.000.000 \\ \hline
     Percorrenza & A & 52.000.000 \\ \hline
-    Contiene & A & 52.000.000 \\ \hline
-
-    Segmento & E & 15.400.000 \\ \hline
-    Caratteristica & A & 15.400.000 \\ \hline
-    Caratteristica segmento & E & 20 \\ \hline
-    
+    Contiene & A & 52.000.000
 
     \end{tabularx}
 
@@ -293,6 +292,11 @@ all'utente che ha creato un segmento.
     \arrayrulecolor[HTML]{BDBFC3}
     \rowcolor[HTML]{cef3fe} 
     \textbf{Concetto} & \textbf{Costrutto} & \textbf{Volume} \\
+
+    Segmento & E & 15.400.000 \\ \hline
+
+    Caratteristica & A & 15.400.000 \\ \hline
+    Caratteristica segmento & E & 20 \\ \hline
 
     Relativo & A & 20 \\ \hline
     Sport & E & 3 \\ \hline
@@ -326,20 +330,57 @@ all'utente che ha creato un segmento.
     \end{tabularx}
 \end{center}
 
+\newpage
 \section{Descrizione delle operazioni principali e stima della loro frequenza}
+
+Alcune tra le operazioni più rilevanti che possono essere svolte sono riassumibili
+nella seguente tabella insieme alla loro frequenza.
 
 \begin{table}[h!]
     \centering
     \renewcommand{\arraystretch}{1.5} % Altezza delle righe
     \begin{tabularx}{\textwidth}{
-    >{\raggedright\arraybackslash}p{\dimexpr.15\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
-    >{\raggedright\arraybackslash}p{\dimexpr.65\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
+    >{\raggedright\arraybackslash}p{\dimexpr.12\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
+    >{\raggedright\arraybackslash}p{\dimexpr.68\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
     >{\raggedright\arraybackslash}p{\dimexpr.2\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
     }
     \arrayrulecolor[HTML]{BDBFC3}
     \rowcolor[HTML]{cef3fe}
     \textbf{Codice} & \textbf{Operazioe} & \textbf{Frequenza} \\
+    1 & Registrazione di un nuovo utente & 40/Giorno \\ \hline
+    2 & Svolgimento di un'attività & 8.000/Giorno \\ \hline
+    3 & Scrittura di un commento & 24.000/Giorno \\ \hline
+    4 & Inserimento di una scarpa/bicicletta da parte di un utente & 28/Giorno \\ \hline
+    5 & Assegnazione di un riconoscimento ad un utente & 16.000/Giorno\\ \hline
+    6 & Visualizzazione di tutte le attività di nuoto svolte in estate & 5/Anno \\ \hline
+    7 & Visualizzazione di tutte le attivita dei seguiti da un utente & 9.000/Giorno \\ \hline
+    8 & Visualizzazione della distanza totale percorsa in un anno da un utente & 2.900/Giorno \\ \hline
+    9 & Visualizzazione delle migliori prestazioni su tutti i segmenti di un utente & 2.000/Giorno \\ \hline
+    10 & Visualizzazione del miglior tempo su un dato segmento & 3.500/Giorno\\ \hline
+    11 & Visualizzazione di tutte le attività di un determinato sport di un utente & 1.300/Giorno \\ \hline
+    
     \end{tabularx}
 \end{table}
+
+\section{Schemi di navigazione e tabelle degli accessi}
+
+\subsection*{Registrazione di un nuovo utente}
+
+\begin{table}[h!]
+    \centering
+    \renewcommand{\arraystretch}{1.5} % Altezza delle righe
+    \begin{tabularx}{\textwidth}{
+    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 1
+    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 2
+    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    >{\raggedright\arraybackslash}p{\dimexpr.25\linewidth-2\tabcolsep-1.3333\arrayrulewidth}% column 3
+    }
+    \arrayrulecolor[HTML]{BDBFC3}
+    \rowcolor[HTML]{cef3fe}
+    \textbf{Concetto} & \textbf{Costrutto} & \textbf{Accessi} & \textbf{Tipo} \\
+
+    \end{tabularx}
+\end{table}
+
 
 \end{document}
