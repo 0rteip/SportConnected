@@ -21,6 +21,8 @@
 
 \usepackage{tabularx}
 
+\usepackage{enumitem}
+
 \usepackage[left=2.5cm, right=2.5cm, top=2.5cm, bottom=3cm]{geometry}
 
 \title{Elaborato per il corso di\\``Basi di Dati''\\[0.3in]
@@ -767,5 +769,53 @@ Nello schema sono già evidenziate tutte le chiavi primarie per la maggior
 parte delle entità. Per l'entità \emph{Riconoscimento utente} si sceglie di utilizzare come chiave
 primaria l'associazione con \emph{Utente} e \emph{Segmento}, lasciando il rimanente vincolo (assegnare
 un solo riconoscimento per utente) da implementare a livello applicativo.
+
+\subsection*{Eliminazione degli identificatori esterni}
+Nella traduzione da E/R a schema logico sono eliminate le seguenti associazioni:
+
+\begin{itemize}[itemsep=0pt, parsep=1pt]
+    \item Tipologia bicicletta, importando IdTipologia in Bicicletta
+    \item Marca scarpe, importando IdMarca in Scarpe
+    \item Utilizza bicicletta, importando IdUtente in Bicicletta
+    \item Utilizza scarpe, importando IdUtente in Scarpe
+    \item Assegnazione riconoscimento, importando IdRiconoscimento in Riconoscimento utente
+    \item Riconoscimento segmento, importando IdSegmento in Riconoscimento utente
+    \item Elogio, importando IdUtente in Riconoscimento utente
+    \item Caratteristica, importando IdCaratteristica in Segmento
+    \item Relativo, importando IdSport in Caratteristica segmento
+    \item Percorrenza, importando IdSegmento in Segmento percorso
+    \item Effettuazione, importando IdSport in Attività
+    \item Esecuzione, importando IdAttività e IdSport in Segmento percorso
+    \item Itinerario, importando IdPercorso in Attività
+    \item Riceve, importando IdSport e IdAttività in Commento
+    \item Scrive, importando IdUtente in Commento
+    \item Svolge, importando IdUtente in Attività
+    \item Contiene, retificata importando IdPercorso da Percorso e IdSegmento da Segmento
+    \item Salvataggio segmento, retificata importando IdUtente da Utente e IdSegmento da Segmento
+    \item Salvataggio percorso, retificata importando IdPercorso da Percorso e IdUtente da Utente
+    \item Follow, retificata importando IdUtente da Utente e SegIdUtente da Utente
+  \end{itemize}
+
+
+\section{Traduzione di entità e associazioni in relazioni}
+
+
+
+\section{Schema relazionale finale}
+Pagina successiva.
+
+\newgeometry{margin=0cm}
+    \begin{figure}[p]
+        \centering
+        \includegraphics[height=\paperheight]{schema_logico_1.png}
+        
+    \end{figure}
+    
+    \begin{figure}[p]
+        \centering
+        \includegraphics[height=\paperheight]{schema_logico_2.png}
+    \end{figure}
+    
+\restoregeometry
 
 \end{document}
