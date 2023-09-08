@@ -23,6 +23,10 @@
 
 \usepackage{enumitem}
 
+\usepackage{xcolor}
+
+\usepackage{listings}
+
 \usepackage[left=2.5cm, right=2.5cm, top=2.5cm, bottom=3cm]{geometry}
 
 \title{Elaborato per il corso di\\``Basi di Dati''\\[0.3in]
@@ -754,14 +758,12 @@ tutti i parametri relativi ad un'attività in un'entità unica.
 
 Per la gerarchia \emph{Traccia} (t, e) si é scelto di adottare il collasso verso il basso siccome gli
 accessi alle entità figlie sono distinti e non si ha necessità che l'identificatore sia univoco.
-Scelta analoga è stata fatta per la gerarchia \emph{Attrezzatura} (t, e), con differenza nella scelta
-dell'identificatore.
+Scelta analoga è stata fatta per la gerarchia \emph{Attrezzatura} (t, e).
 
 \subsection*{Eliminazione degli attributi composti}
 
 L'attributo composto \emph{residenza} nell'entità \emph{Utente} é stato scomposto nelle sue 
-componenti, sarà poi necessario controllare a livello applicativo che i valori 
-vengano inseriti in maniera coerente.
+componenti, sarà poi necessario controllare a livello applicativo la coerenza dei dati inseriti.
 
 \subsection*{Scelta delle chiavi primarie}
 
@@ -773,7 +775,7 @@ un solo riconoscimento per utente) da implementare a livello applicativo.
 \subsection*{Eliminazione degli identificatori esterni}
 Nella traduzione da E/R a schema logico sono eliminate le seguenti associazioni:
 
-\begin{itemize}[itemsep=0pt, parsep=1pt]
+\begin{itemize}[itemsep=0pt, parsep=0pt]
     \item Tipologia bicicletta, importando IdTipologia in Bicicletta
     \item Marca scarpe, importando IdMarca in Scarpe
     \item Utilizza bicicletta, importando IdUtente in Bicicletta
@@ -799,6 +801,29 @@ Nella traduzione da E/R a schema logico sono eliminate le seguenti associazioni:
 
 \section{Traduzione di entità e associazioni in relazioni}
 
+UTENTI(\underline{idUtente}, nome, cognome, dataDiNascita, sesso, fotoProfilo*, biografia*, res\_città*, res\_provincia*, peso*, altezza*) \\
+MARCHE(\underline{idMarca}, nome) \\
+SCARPE(\underline{idUtente}:UTENTI, \underline{nickname}, modello, idMarca: MARCHE) \\
+TIPOLOGIE(\underline{idTipologia}, nome, descrizione) \\
+BICICLETTE(\underline{idUtente}: UTENTI, \underline{nickname}, modello, idTipologia: TIPOLOGIE) \\
+RICONOSCIMENTI(\underline{idRiconoscimento}, nome) \\
+RICONOSCIMENTI\_UTENTI(\underline{idUtente}: UTENTI, \underline{idSegmento}: SEGMENTI, idRiconoscimento: RICONOSCIMENTI) \\
+\hspace*{1cm} UNIQUE(idRiconoscimento, idSegmento) \\
+SEGMENTI(\underline{idSegmento}, visibilità, traccia, nome, (idSport, idCaratteristica): CARATTERISTICHE\_SEGMENTI) \\
+CONTIENE(\underline{idPercorso}: PERCORSI, \underline{idSegmento}: SEGMENTI) \\
+CARATTERISTICHE\_SEGMENTI(\underline{idSport}: SPORT, \underline{idCaratteristica}, descrizione) \\
+FOLLOW(\underline{seg\_idUtente}: UTENTI, \underline{idUtente}: UTENTI) \\
+SALVATAGGI\_SEGMENTI(\underline{idSegmento}: SEGMENTI, \underline{idUtente}: UTENTI) \\
+SALVATAGGI\_PERCORSI(\underline{idPercorso}: PERCORSI, \underline{idUtente}: UTENTI) \\
+PERCORSI(\underline{idPercorso}, descrizione, traccia, nome) \\
+SPORT(\underline{idSport}, nome) \\
+SEGMENTI\_PERCORSI(\underline{idSegmento}: SEGMENTI, \underline{idSport}: SPORT, \underline{idAttivita}: ATTIVITÀ, \underline{idSegmentoPercorso}, tempoPercorrenza) \\
+COMMENTI(\underline{idSport}: SPORT, \underline{idAttivita}: ATTIVITÀ, \underline{idCommento}, testo, like, idUtente: UTENTI) \\
+ATTIVITÀ(\underline{idSport}: SPORT, \underline{idAttivita}, idPercorso: PERCORSI, titolo, visibilità, gioro, distanza, tempoMovimento, velocitaMedia, calorieBruciate, like, dislivelloPositivo*, dislivelloNegativo*, altitudineMax*, tempoVascaMinore*, idUtente: UTENTI) \\
+\hspace*{1cm} UNIQUE(idPercorso)
+
+\vspace*{12pt}
+Durante la traduzione delle entità è risultato superfluo mantenere l'attributo sport per la relazione \emph{segmenti}.
 
 
 \section{Schema relazionale finale}
@@ -815,7 +840,181 @@ Pagina successiva.
         \centering
         \includegraphics[height=\paperheight]{schema_logico_2.png}
     \end{figure}
-    
+    Traduzione delle operazioni in query SQL
 \restoregeometry
+
+\lstdefinestyle{sql}{
+    language=SQL,
+    basicstyle=\ttfamily,
+    keywordstyle=\color{blue}\bfseries,
+    numberstyle=\color{orange!100!black}, % Aggiungi questa linea per colorare i numeri
+    morekeywords={INSERT, INTO, VALUES}
+}
+
+
+\section{Traduzione delle operazioni in query SQL}
+
+\subsection*{01 - Registrazione di un nuovo utete}
+
+\begin{lstlisting}[style=sql, style=sql, language=SQL, label=lst:sql-query]
+INSERT INTO UTENTI (IdUtente, Nome, Cognome, DataDiNascita, Sesso, 
+    FotoProfilo, Biografia,Res_Citta, Res_Provincia, Peso, Altezza)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+\end{lstlisting}
+    
+
+\subsection*{02- Svolgimento di un’attività di ciclismo}
+% #prima bisogna inserire un percorso, supponiamo idpercorso=45
+Prima di caricare un'attività di qualsiasi tipo è necessario caricare un percorso
+alla quale essa faccia riferimento. (Facciamo un esempio con IdPercorso=45)
+
+\begin{lstlisting}[style=sql, language=SQL, label=lst:sql-query]
+INSERT INTO PERCORSI (IdPercorso, Descrizione, Traccia, Nome)
+VALUE (45, ?, ?, ?)
+\end{lstlisting}
+
+Possiamo poi caricare la nostra nuova attività, facendo riferimento ovviamente al percorso
+che abbiamo appena caricato, ossia 45. Siccome in questo caso si tratta di una'attività
+ciclistica andiamo a prendere l'IdSport di 'Ciclismo', inseriamo al data odierna e i restanti valori.
+% #poi inserisco attivita: 3 è ciclismo 
+\begin{lstlisting}[style=sql, language=SQL, label=lst:sql-query]
+INSERT INTO ATTIVITA (IdSport, IdAttivita, IdPercorso, Titolo, 
+    Visibilita, Giorno, Distanza, TempoMovimento, VelocitaMedia, 
+    CalorieBruciate, Likes, IdUtente, DislivelloPositivo, 
+    DislivelloNegativo, AltitudineMax)
+VALUE (?, (SELECT IdSport FROM SPORT WHERE Nome='Ciclismo'), 
+        45, ?, ?, now(), ?, ?, ?, ?, ?, ?, ?, ?, ?)
+\end{lstlisting}
+
+% #eventuali segemnti percorsi, mantengo 3 per ciclismo, poi il secondo valore deve essere coerente con idattivita di quella inserita
+Si possono poi inserire gli eventuali segmenti percorsi durante l'attività.
+
+\begin{lstlisting}[style=sql, language=SQL, label=lst:sql-query]
+INSERT INTO SEGMENTI_PERCORSI(IdSport, IdAttivita, IdSegmento, 
+        IdSegmentoPercorso, TempoPercorrenza) 
+VALUES (3, ?, ?, ?, ?),(3, ?, ?, ?, ?),...
+\end{lstlisting}
+
+\subsection*{03 - Scrittura di un commento}
+Conoscendo il nome utente possiamo fare
+% #Op3 scrittura di un commento da utente con id 16
+
+\begin{lstlisting}[style=sql, language=SQL, label=lst:sql-query]
+INSERT INTO COMMENTI (IdSport, IdAttivita, IdCommento, Testo, 
+Likes, IdUtente)
+VALUE (?, ?, ?, ?, 0, (SELECT IdUtente FROM UTENTI WHERE Nome='?'))
+\end{lstlisting}
+
+
+\subsection*{04 - Inserimento di una scarpa da parte di un utente}
+Per reperire l'IdUtente possiamo adottare un metodo analogo a quanto fatto per
+l'operazione 05
+
+\begin{lstlisting}[style=sql, language=SQL, label=lst:sql-query]
+INSERT INTO SCARPE (IdUtente, Modello, Nickname, IdMarca)
+VALUE (?, ?, ?, ?)
+\end{lstlisting}
+
+
+\subsection*{05 - Assegnazione di un riconoscimento ad un utente}
+Se il segmento ancora non risulta essere con nessun riconoscimento associato
+
+\begin{lstlisting}[style=sql, language=SQL, label=lst:sql-query]
+INSERT INTO RICONOSCIMENTI_UTENTI (IdUtente, IdSegmento, 
+        IdRiconoscimento)
+VALUE (?, ?, ?)
+\end{lstlisting}
+
+Se il segmento ha invece un altro tempo già associato, ma non corrisponde
+a quello dell'utente con il tempo minore su un dato segmento
+% #se invece é già presente un utente, e il tempo del nuovo inserimento è il primo (in questo caso KOM)
+\begin{lstlisting}[style=sql, language=SQL, label=lst:sql-query]
+SELECT A.IdUtente
+FROM SEGMENTI_PERCORSI SP, ATTIVITA A
+WHERE A.IdSport=SP.IdSport
+AND A.IdAttivita=SP.IdAttivita
+AND SP.IdSegmento=?
+ORDER BY SP.TempoPercorrenza
+LIMIT 1;
+\end{lstlisting}
+
+Posso aggiornare il riconoscimento al nuovo utente, in questo caso 
+assegnado come riconoscimento KOM
+% #Allora posso aggiornare il riconoscimento
+\begin{lstlisting}[style=sql, language=SQL, label=lst:sql-query]
+UPDATE RICONOSCIMENTI_UTENTI
+SET IdUtente=?
+WHERE IdSegmento=?
+AND IdRiconoscimento=(SELECT IdRiconoscimento
+        FROM RICONOSCIMENTI
+        WHERE Nome='Re della Montagna (KOM)');
+\end{lstlisting}
+
+Possono esistere politiche di aggiornamento diverse in base al tipo di riconoscimento da assegnare.
+
+\subsection*{06 - Visualizzare tutte le attivita dei seguiti da un utente, incluso percorso e sport}
+\begin{lstlisting}[style=sql, language=SQL, label=lst:sql-query]
+SELECT U1.Nome, A.*, S.Nome Sport, P.Nome NomePercorso
+FROM UTENTI U, FOLLOW F, UTENTI U1, ATTIVITA A, PERCORSI P, SPORT S
+WHERE F.IdUtente=U.IdUtente
+AND U1.IdUtente=F.Seg_IdUtente
+AND U1.IdUtente=A.IdUtente
+AND A.IdPercorso=P.IdPercorso
+AND A.IdSport=S.IdSport
+AND A.Visibilita=true
+AND U.IdUtente=?
+\end{lstlisting}
+
+
+\subsection*{07 - Visualizzazione utente con il migliore tempo su un dato segmento}
+% #utilizzo la stessa query utilizzara per 05
+Posso utilizzare una Query analoga a quella vista nella operazione 05
+\begin{lstlisting}[style=sql, language=SQL, label=lst:sql-query]
+SELECT A.IdUtente
+FROM SEGMENTI_PERCORSI SP, ATTIVITA A
+WHERE A.IdSport=SP.IdSport
+AND A.IdAttivita=SP.IdAttivita
+AND SP.IdSegmento=?
+ORDER BY SP.TempoPercorrenza
+LIMIT 1
+\end{lstlisting}
+
+
+\subsection*{08 - Visualizzazione di tutte le attività di nuoto svolte in estate}
+\begin{lstlisting}[style=sql, language=SQL, label=lst:sql-query]
+SELECT A.*
+FROM ATTIVITA A, SPORT S
+WHERE A.IdSport=S.IdSport
+AND S.Nome='Nuoto'
+AND month(A.Giorno) BETWEEN 7 AND 9;
+\end{lstlisting}
+
+
+\subsection*{09 - Visualizzazione della distanza totale percorsa in un anno da
+un utente}
+In questo caso specifico scelgo di vedere quelle svolte nell'anno corrente
+\begin{lstlisting}[style=sql, language=SQL, label=lst:sql-query]
+SELECT U.IdUtente, U.Nome, sum(A.Distanza) DistanzaAnnuale
+FROM ATTIVITA A, UTENTI U
+WHERE U.IdUtente=A.IdUtente
+AND U.IdUtente=?
+AND year(A.Giorno)=year(now())
+GROUP BY U.IdUtente, U.Nome
+\end{lstlisting}
+
+
+\subsection*{10 - Visualizzazione delle migliori prestazioni per ogni segmento
+su un dato utente}
+\begin{lstlisting}[style=sql, language=SQL, label=lst:sql-query]
+SELECT A.IdUtente, SP.IdSegmento, S.Nome, min(SP.TempoPercorrenza) TempoMinimo, 
+        count(SP.TempoPercorrenza) NumVoltePercorso
+FROM ATTIVITA A, SEGMENTI_PERCORSI SP, SEGMENTI S
+WHERE A.IdSport=SP.IdSport
+AND A.IdAttivita=SP.IdAttivita
+AND S.IdSegmento=SP.IdSegmento
+AND A.IdUtente=?
+GROUP BY SP.IdSegmento, A.IdUtente, S.Nome
+ORDER BY A.IdUtente
+\end{lstlisting}
 
 \end{document}
