@@ -45,7 +45,7 @@
 \chapter{Analisi dei requisiti}
 
 Si vuole creare una basi di dati a supporto dell'applicazione \emph{SportConnected} per gestire le attività
-svolte dagli utenti. La base di dati immagazzina quindi informazioni su utenti e relativa attività al fine
+svolte dagli utenti. La base di dati immagazzina quindi informazioni su utenti e relative attività al fine
 di poter fornire una consultazione comoda per visualizzare i progressi del proprio allenamento o degli altri.
 
 \section{Intervista}
@@ -370,7 +370,7 @@ nella seguente tabella insieme alla loro frequenza.
 \newpage
 \section{Tabelle degli accessi e schemi di navigazione}
 
-Si cerca ora di stimare i costi di accesso per le varie operazioni descritte in precedenza.
+Si cercano ora di stimare i costi di accesso per le varie operazioni descritte in precedenza.
 Dove non dovesse risultare sufficiente la sola tabella degli accessi sarà fornito anche uno schema
 di navigazione.
 Per il calcolo degli accessi i pesi delle operazioni in scrittura sono considerati doppi
@@ -435,7 +435,7 @@ Un commento deve essere scritto da un utente e riferito ad un'attività.
 \subsection*{04 - Inserimento di una scarpa da parte di un utente}
 
 L'inserimento di una scarpa richiede la lettura di tutte le marche presenti per permettere
-la scelta in fase di aggiunta.
+la scelta in fase di aggiunta, analogo sarebbe per inserire una bicicletta.
 
 \begin{table}[h!]
     \centering
@@ -873,17 +873,21 @@ INSERT INTO PERCORSI (IdPercorso, Descrizione, Traccia, Nome)
 VALUE (45, ?, ?, ?)
 \end{lstlisting}
 
-Possiamo poi caricare la nostra nuova attività, facendo riferimento ovviamente al percorso
+Si può poi caricare la nostra nuova attività, facendo riferimento ovviamente al percorso
 che abbiamo appena caricato, ossia 45. Siccome in questo caso si tratta di una'attività
 ciclistica andiamo a prendere l'IdSport di 'Ciclismo', inseriamo al data odierna e i restanti valori.
 % #poi inserisco attivita: 3 è ciclismo 
+
 \begin{lstlisting}[style=sql, language=SQL, label=lst:sql-query]
-INSERT INTO ATTIVITA (IdSport, IdAttivita, IdPercorso, Titolo, 
-    Visibilita, Giorno, Distanza, TempoMovimento, VelocitaMedia, 
+SELECT IdSport FROM SPORT WHERE Nome='Ciclismo'
+\end{lstlisting}
+
+\begin{lstlisting}[style=sql, language=SQL, label=lst:sql-query]
+INSERT INTO ATTIVITA (IdSport, IdAttivita, IdPercorso, Titolo,
+    Visibilita, Giorno, Distanza, TempoMovimento, VelocitaMedia,
     CalorieBruciate, Likes, IdUtente, DislivelloPositivo, 
-    DislivelloNegativo, AltitudineMax)
-VALUE (?, (SELECT IdSport FROM SPORT WHERE Nome='Ciclismo'), 
-        45, ?, ?, now(), ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    DislivelloNegativo, AltitudineMax, TempoVascaMinore)
+VALUE (?, ?, ?, ?, ?, now(), ?, ?, ?, ?, 0, ?, ?, ?, ?, ?);
 \end{lstlisting}
 
 % #eventuali segemnti percorsi, mantengo 3 per ciclismo, poi il secondo valore deve essere coerente con idattivita di quella inserita
@@ -896,19 +900,17 @@ VALUES (3, ?, ?, ?, ?),(3, ?, ?, ?, ?),...
 \end{lstlisting}
 
 \subsection*{03 - Scrittura di un commento}
-Conoscendo il nome utente possiamo fare
+Conoscendo id di un utente e dati relativi ad un'attività si può
 % #Op3 scrittura di un commento da utente con id 16
 
 \begin{lstlisting}[style=sql, language=SQL, label=lst:sql-query]
-INSERT INTO COMMENTI (IdSport, IdAttivita, IdCommento, Testo, 
-Likes, IdUtente)
-VALUE (?, ?, ?, ?, 0, (SELECT IdUtente FROM UTENTI WHERE Nome='?'))
+INSERT INTO COMMENTI (IdSport, IdAttivita, IdCommento, Testo,
+    Likes, IdUtente)
+VALUE (?, ?, ?, ?, ?, ?)
 \end{lstlisting}
 
 
 \subsection*{04 - Inserimento di una scarpa da parte di un utente}
-Per reperire l'IdUtente possiamo adottare un metodo analogo a quanto fatto per
-l'operazione 05
 
 \begin{lstlisting}[style=sql, language=SQL, label=lst:sql-query]
 INSERT INTO SCARPE (IdUtente, Modello, Nickname, IdMarca)
@@ -938,7 +940,7 @@ ORDER BY SP.TempoPercorrenza
 LIMIT 1;
 \end{lstlisting}
 
-Posso aggiornare il riconoscimento al nuovo utente, in questo caso 
+si può aggiornare il riconoscimento al nuovo utente, in questo caso 
 assegnado come riconoscimento KOM
 % #Allora posso aggiornare il riconoscimento
 \begin{lstlisting}[style=sql, language=SQL, label=lst:sql-query]
@@ -950,7 +952,8 @@ AND IdRiconoscimento=(SELECT IdRiconoscimento
         WHERE Nome='Re della Montagna (KOM)');
 \end{lstlisting}
 
-Possono esistere politiche di aggiornamento diverse in base al tipo di riconoscimento da assegnare.
+Possono esistere politiche di aggiornamento diverse in base al tipo di riconoscimento da assegnare,
+ma sarebbero da definire meglio a livello applicazione.
 
 \subsection*{06 - Visualizzare tutte le attivita dei seguiti da un utente, incluso percorso e sport}
 \begin{lstlisting}[style=sql, language=SQL, label=lst:sql-query]
@@ -968,7 +971,7 @@ AND U.IdUtente=?
 
 \subsection*{07 - Visualizzazione utente con il migliore tempo su un dato segmento}
 % #utilizzo la stessa query utilizzara per 05
-Posso utilizzare una Query analoga a quella vista nella operazione 05
+Può essere utilizzata una Query analoga a quella vista nella operazione 05
 \begin{lstlisting}[style=sql, language=SQL, label=lst:sql-query]
 SELECT A.IdUtente
 FROM SEGMENTI_PERCORSI SP, ATTIVITA A
@@ -991,7 +994,7 @@ AND month(A.Giorno) BETWEEN 7 AND 9;
 
 
 \subsection*{09 - Visualizzazione della distanza totale percorsa in un anno da un utente}
-In questo caso specifico scelgo di vedere quelle svolte nell'anno corrente
+In questo caso specifico si scelgono di vedere quelle svolte nell'anno corrente
 \begin{lstlisting}[style=sql, language=SQL, label=lst:sql-query]
 SELECT U.IdUtente, U.Nome, sum(A.Distanza) DistanzaAnnuale
 FROM ATTIVITA A, UTENTI U
@@ -1003,6 +1006,7 @@ GROUP BY U.IdUtente, U.Nome
 
 
 \subsection*{10 - Visualizzazione delle migliori prestazioni per ogni segmento su un dato utente}
+Vengono visualizzate anche le volte che ogni segmento è stato percorso
 \begin{lstlisting}[style=sql, language=SQL, label=lst:sql-query]
 SELECT A.IdUtente, SP.IdSegmento, S.Nome, min(SP.TempoPercorrenza) TempoMinimo, 
         count(SP.TempoPercorrenza) NumVoltePercorso
@@ -1014,5 +1018,50 @@ AND A.IdUtente=?
 GROUP BY SP.IdSegmento, A.IdUtente, S.Nome
 ORDER BY A.IdUtente
 \end{lstlisting}
+
+\chapter{Progettazione dell'applicazione}
+
+\section{Descrizione dell'architettura dell'applicazione realizzata}
+
+Per interfacciarsi al database è stata realizzata un'applicazione in linguaggio Java, la quale offre
+la possibilità di visualizzare i dati principali e eseguire alcune delle operazioni principali.
+È stato utilizzato un driver compatibile con JDBC 4.2 per interfacciare l'applicativo con il DBMS MariaDB.
+L'interfaccia grafica è stata sviluppata con JavaFX e grazie all'utilizzo di file FXML per definire
+l'aspetto e di controller in grado di eseguire le query specifiche per ogni sezione.
+
+\begin{figure}[H]
+    \includegraphics[width=0.9\textwidth]{swappy-20230910_002421.png}
+    \centering
+    \caption{\emph{Schermata di inserimento per le attività.}}
+    \label{img:image}
+\end{figure}
+
+Sono state realizzate tramite query le principali operazioni di modifica e visualizzazione dei dati.
+Nella figura \ref*{img:image} viene mostrato quello che potrebbe essere il processo di inserimento manuale
+di un'attività, anche se va normalemnte esse dovrebbero essere caricate da servizi di terze parti che si 
+occupano di registrare i dati e inviarli poi all'applicazione, ma per ragioni di semplicità e tempo
+questa parte non è stata implementata. 
+
+I percorsi caricati dovrebbero essere analizzati da un algoritmo il quale si occupa di individure quali
+segmenti sono contenuti in esso, i tempi associati alla traccia e quindi inserirli di conseguenza nel DB.
+In maniera analoga alcune delle informazioni delle attività, come tempi di percorrenza e dati altimetrici
+non dovrebbero essere inseriti manualmente, ma calcolati a partire dal percorso.
+
+\begin{figure}[H]
+    \includegraphics[width=0.9\textwidth]{swappy-20230910_004239.png}
+    \centering
+    \caption{\emph{Operazioni su tabella segmenti}}
+    \label{img:image_segmenti}
+\end{figure}
+
+Sono presenti alcune operazioni facilmente eseguibili per l'interrogazione del DB e possono essere trovate
+nella sottosezione operazioni delle schede principali.
+
+L'applicazione non si presenta tanto quanto uno strumento da utilizzare liberamente da un utente, ma più come
+un tool per la gestione grafica del contesto considerato.
+
+
+
+
 
 \end{document}

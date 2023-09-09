@@ -34,16 +34,28 @@ public class ActivitiFollow extends Activity {
 
     @Override
     public String toString() {
-        return "ActivitiFollow [Utente=" + UNome + ", Sport=" + SNome + ", Percorso=" + PNome + "]"
-                + " Activity [IdSport=" + getIdSport() + ", IdAttivita=" + getIdAttivita() + ", IdPercorso="
-                + getIdPercorso()
-                + ", Titolo=" + getTitolo() + ", Visibilita=" + isVisibilita() + ", Giorno=" + getGiorno()
-                + ", Distanza=" + getDistanza()
-                + ", TempoMovimento=" + getTempoMovimento() + ", VelocitaMedia=" + getVelocitaMedia()
-                + ", CalorieBruciate="
-                + getCalorieBruciate() + ", Likes=" + getLikes() + ", DislivelloPositivo=" + getDislivelloPositivo()
-                + ", DislivelloNegativo=" + getDislivelloNegativo() + ", AltitudineMax=" + getAltitudineMax()
-                + ", TempoVascaMinore=" + getTempoVascaMinore() + ", IdUtente=" + getIdUtente() + "]";
+        return "Info Generali\n"
+                + "\t- Utente: " + UNome + "\n"
+                + "\t- Sport: " + SNome + "\n"
+                + "\t- Percorso: " + PNome + "\n"
+                + "\tSpecifiche attivita\n"
+                + "\t\t- IdSport: " + getIdSport() + "\n"
+                + "\t\t- IdAttivita: " + getIdAttivita() + "\n"
+                + "\t\t- IdPercorso: " + getIdPercorso() + "\n"
+                + "\t\t- Titolo: " + getTitolo() + "\n"
+                + "\t\t- Visibilita: " + isVisibilita() + "\n"
+                + "\t\t- Giorno: " + getGiorno() + "\n"
+                + "\t\t- Distanza: " + getDistanza() + "\n"
+                + "\t\t- TempoMovimento: " + getTempoMovimento() + "\n"
+                + "\t\t- VelocitaMedia: " + getVelocitaMedia() + "\n"
+                + "\t\t- CalorieBruciate: " + getCalorieBruciate() + "\n"
+                + "\t\t- Likes: " + getLikes() + "\n"
+                + "\t\t- DislivelloPositivo: " + getDislivelloPositivo() + "\n"
+                + "\t\t- DislivelloNegativo: " + getDislivelloNegativo() + "\n"
+                + "\t\t- AltitudineMax: " + getAltitudineMax() + "\n"
+                + "\t\t- TempoVascaMinore: " + getTempoVascaMinore() + "\n"
+                + "\t\t- IdUtente: " + getIdUtente();
+
     }
 
 }

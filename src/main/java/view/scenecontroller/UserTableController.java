@@ -11,6 +11,7 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -152,7 +153,8 @@ public class UserTableController extends AbstractSceneController {
             final List<ActivitiFollow> act = new ArrayList<>();
             // Inside a loop you should:
 
-            System.out.println("Attività svolte dai seguiti di: " + this.userIdFollowField.getText());
+            System.out.println("\n" +
+                    ">>> \nAttività svolte dai seguiti di: " + this.userIdFollowField.getText());
             try {
                 while (resultSet.next()) {
                     final ActivitiFollow a = new ActivitiFollow(resultSet.getInt("A.IdSport"),
@@ -174,6 +176,7 @@ public class UserTableController extends AbstractSceneController {
                             resultSet.getString("U1.Nome"),
                             resultSet.getString("Sport"),
                             resultSet.getString("NomePercorso"));
+
                     System.out.println(a);
                     act.add(a);
                 }
@@ -270,7 +273,8 @@ public class UserTableController extends AbstractSceneController {
             // Execute and save result
             final ResultSet resultSet = statement.executeQuery();
 
-            System.out.println("Distanza totale percorsa quest'anno");
+            System.out.println("\n" +
+                    ">>> \nDistanza totale percorsa quest'anno");
             try {
                 while (resultSet.next()) {
                     System.out.println("IdUtente: " + resultSet.getString("U.IdUtente")
