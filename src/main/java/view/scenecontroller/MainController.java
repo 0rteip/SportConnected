@@ -1,8 +1,10 @@
 package view.scenecontroller;
 
+import java.util.Objects;
+
 import javafx.fxml.FXML;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import model.ConnectionProvider;
 
 /**
  * Scene for settings.
@@ -13,61 +15,44 @@ public final class MainController extends AbstractSceneController implements Sce
     private TabPane tabPane;
 
     @FXML
-    private Tab tabUtenti;
+    private UserTableController tabUtentiController;
 
     @FXML
-    private Tab tabScarpe;
+    private ShoeTableController tabScarpeController;
 
     @FXML
-    private Tab tabBiciclette;
+    private BikeTableController tabBicicletteController;
 
     @FXML
-    private Tab tabAttivita;
+    private ActivityTableController tabAttivitaController;
 
     @FXML
-    private Tab tabPercorsi;
+    private TrackTableController tabPercorsiController;
 
     @FXML
-    private Tab tabSegmenti;
+    private SegmentTableController tabSegmentiController;
 
     @FXML
-    private Tab tabCommenti;
+    private CommentTableController tabCommentiController;
+
+    final static String username = "root";
+    final static String password = "password";
+    final static String dbName = "SportConnected";
+    
+    final static ConnectionProvider conn = new ConnectionProvider(username, password, dbName);
 
     @FXML
-    private UserTableController userController;
-
-    @FXML
-    private ShoeTableController shoeController;
-
-    @FXML
-    private BikeTableController bikeController;
-
-    @FXML
-    private ActivityTableController activityController;
-
-    @FXML
-    private TrackTableController trackController;
-
-    @FXML
-    private SegmentTableController segmentController;
-
-    @FXML
-    private CommentTableController commentController;
-
-    public void init() {
+    public void initialize() {
+        Objects.requireNonNull(conn.getMySQLConnection());
         
+        this.tabUtentiController.init(conn.getMySQLConnection());
+        this.tabAttivitaController.init(conn.getMySQLConnection());
+        this.tabScarpeController.init(conn.getMySQLConnection());
+        this.tabBicicletteController.init(conn.getMySQLConnection());
+        this.tabPercorsiController.init(conn.getMySQLConnection());
+        this.tabSegmentiController.init(conn.getMySQLConnection());
+        this.tabCommentiController.init(conn.getMySQLConnection());
     }
 
-    // @Override
-    public void initializeScene() {
-        // if (this.getView().isGameRunning()) {
-        //     this.getView().startStop();
-        // }
-        // if (this.gameSpeedComboBox.getItems().isEmpty()) {
-        //     this.gameSpeedComboBox.getItems().addAll(this.getView().getGameSettings().getGameSpeeds());
-        //     this.gameSpeedComboBox.getSelectionModel()
-        //             .select(this.getView().getGameSettings().getGameSpeed());
-        //     this.pcs.addPropertyChangeListener(new GameSpeedObserver(this.getView()));
-        // }
-    }
+    public void init() {};
 }

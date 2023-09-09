@@ -22,8 +22,7 @@
                <center>
                   <TableView fx:id="percTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <columns>
-                        <TableColumn prefWidth="75.0" text="C1" />
-                        <TableColumn prefWidth="75.0" text="C2" />
+                         
                      </columns>
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

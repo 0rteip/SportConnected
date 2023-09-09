@@ -1,5 +1,3 @@
-import controller.Controller;
-import controller.ControllerImpl;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import view.View;
@@ -13,8 +11,7 @@ public class SportConnected extends Application {
     @Override
     public final void start(final Stage primaryStage) throws Exception {
         final View view = new ViewImpl(primaryStage);
-        final Controller controller = new ControllerImpl(view);
-        view.start(controller);
+        view.start();
     }
 
     /**

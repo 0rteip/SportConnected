@@ -1,6 +1,6 @@
 package view;
 
-import controller.Controller;
+import javafx.stage.Window;
 import settings.windowsettings.WindowSettings;
 import view.scenemanager.SceneManager;
 
@@ -12,9 +12,8 @@ public interface View {
     /**
      * Start the application.
      * 
-     * @param controller
      */
-    void start(Controller controller);
+    void start();
 
     /**
      * Returns the {@link WindowSettings}.
@@ -32,5 +31,7 @@ public interface View {
      *         SceneManager
      */
     SceneManager getSceneManager();
+
+    Window getStage();
 
 }

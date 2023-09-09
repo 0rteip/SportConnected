@@ -13,6 +13,7 @@ import  view.utilities.SceneStyle;
 import  view.View;
 import  view.messagedialog.MessageDialog;
 import  view.scenecontroller.SceneController;
+import view.scenecontroller.SceneInitializer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -97,6 +98,10 @@ public final class SceneLoaderImpl implements SceneLoader {
         controller.setSceneManager(this.view.getSceneManager());
         controller.setView(this.view);
         switch (sceneStyle) {
+            case INITIALMENU:
+                final SceneInitializer sceneInitController = (SceneInitializer) controller;
+                sceneInitController.init();
+                break;
             default:
                 break;
         }

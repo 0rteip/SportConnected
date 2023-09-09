@@ -36,7 +36,7 @@ dependencies {
     // Example library: Guava. Add what you need (and remove Guava if you don't use it)
     // implementation("com.google.guava:guava:28.1-jre")
     implementation("ch.qos.logback:logback-classic:1.4.7")
-    implementation("mysql:mysql-connector-java:8.0.29")
+    implementation("com.microsoft.azure:azure-mariadb-connector-java:2.7.0")
     implementation("org.apache.commons:commons-lang3:3.6")
 
     // JavaFX: comment out if you do not need them

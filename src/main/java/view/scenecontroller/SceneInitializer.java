@@ -7,5 +7,5 @@ public interface SceneInitializer {
     /**
      * Initialize scene.
      */
-    void initializeScene();
+    void init();
 }

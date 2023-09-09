@@ -18,33 +18,33 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<TabPane prefHeight="810.0" prefWidth="1400.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15" fx:controller="view.scenecontroller.MainController">
-  <tabs>
-   <Tab fx:id="tabUtenti" text="Utenti">
-      <fx:include fx:id="TabUtenti" source="userTable.fxml"/>
-   </Tab>
- <Tab fx:id="tabScarpe" text="Scarpe">
-      <fx:include fx:id="TabScarpe" source="shoeTable.fxml"/>
-   </Tab>
-   
-      <Tab fx:id="tabBiciclette" text="Biciclette">
-         <fx:include fx:id="TabBiciclette" source="bikeTable.fxml"/>
+<TabPane prefHeight="810.0" prefWidth="1400.0" tabClosingPolicy="UNAVAILABLE"
+   xmlns:fx="http://javafx.com/fxml/1"
+   xmlns="http://javafx.com/javafx/15" fx:controller="view.scenecontroller.MainController">
+   <tabs>
+      <Tab text="Utenti">
+         <fx:include fx:id="tabUtenti" source="userTable.fxml"/>
+      </Tab>
+      <Tab text="Scarpe">
+         <fx:include fx:id="tabScarpe" source="shoeTable.fxml"/>
       </Tab>
 
-      <Tab fx:id="tabAttivita" text="Attività">
-         <fx:include fx:id="TabAttivita" source="activityTable.fxml"/>
-      </Tab>
-      
-      <Tab fx:id="tabPercorsi" text="Percorsi">
-         <fx:include fx:id="TabPercorsi" source="trackTable.fxml"/>
-      </Tab>
-      <Tab fx:id="tabCommenti" text="Commenti">
-         <fx:include fx:id="TabCommenti" source="commentTable.fxml"/>
+      <Tab text="Biciclette">
+         <fx:include fx:id="tabBiciclette" source="bikeTable.fxml"/>
       </Tab>
 
-
-      <Tab fx:id="tabSegmenti" text="Segmenti">
-          <fx:include fx:id="TabSegmenti" source="segmentTable.fxml"/>
+      <Tab text="Attività">
+         <fx:include fx:id="tabAttivita" source="activityTable.fxml"/>
       </Tab>
-  </tabs>
+
+      <Tab text="Percorsi">
+         <fx:include fx:id="tabPercorsi" source="trackTable.fxml"/>
+      </Tab>
+      <Tab text="Commenti">
+         <fx:include fx:id="tabCommenti" source="commentTable.fxml"/>
+      </Tab>
+      <Tab text="Segmenti">
+         <fx:include fx:id="tabSegmenti" source="segmentTable.fxml"/>
+      </Tab>
+   </tabs>
 </TabPane>

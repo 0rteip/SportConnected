@@ -1,5 +1,6 @@
 package view.scenemanager;
 
+import javafx.stage.Stage;
 import  model.message.Message;
 
 /**
@@ -21,4 +22,6 @@ public interface SceneManager {
      *                CountDownLatch
      */
     void openMessage(Message message);
+
+    Stage getStage();
 }

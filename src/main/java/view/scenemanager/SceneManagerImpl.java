@@ -47,4 +47,8 @@ public final class SceneManagerImpl implements SceneManager {
     public void openMessage(final Message message) {
         this.sceneLoader.openDialog(this.stage, message);
     }
+
+    public Stage getStage() {
+        return this.stage;
+    }
 }
