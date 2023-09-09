@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+
+<BorderPane prefHeight="810.0" prefWidth="1400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15" fx:controller="view.scenecontroller.CommentTableController">
+                  <center>
+                  <TableView fx:id="commentTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <columns>
+                        <TableColumn prefWidth="75.0" text="C1" />
+                        <TableColumn prefWidth="75.0" text="C2" />
+                     </columns>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </TableView>
+               </center>
+               <left>
+                  <TabPane tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+                     <tabs>
+                        <Tab fx:id="addCommPage" text="Aggiungi">
+                           <content>
+                              <VBox spacing="18.0">
+                                 <children>
+                                    <TextField fx:id="sportCommField" promptText="Id sport" />
+                                    <TextField fx:id="activityCOmmField" promptText="Id attività" />
+                                    <TextField fx:id="userIdCommField" promptText="Id utente" />
+                                    <TextArea fx:id="textCommArea" prefHeight="100.0" prefWidth="50.0" promptText="Testo" />
+                                    <Button fx:id="addCommentButton" mnemonicParsing="false" onAction="#addComment" text="Inserisci nuovo commento" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                        </Tab>
+                        <Tab fx:id="deleteCommPage" text="Rimuovi">
+                           <content>
+                              <VBox prefHeight="200.0" prefWidth="100.0" spacing="18.0">
+                                 <children>
+                                    <TextField fx:id="deleteCommSportField" promptText="Id percorso" />
+                                    <TextField fx:id="deleteCommActivityField" promptText="Id attività" />
+                                    <TextField fx:id="deleteCommCommField" promptText="Id Commento" />
+                                    <Button fx:id="deleteCommentButton" mnemonicParsing="false" onAction="#deleteComment" text="Cancella Commento" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+               </left>
+            </BorderPane>

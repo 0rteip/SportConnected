@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<TabPane prefHeight="810.0" prefWidth="1400.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15" fx:controller="view.scenecontroller.MainController">
+  <tabs>
+   <Tab fx:id="tabUtenti" text="Utenti">
+      <fx:include fx:id="TabUtenti" source="userTable.fxml"/>
+   </Tab>
+ <Tab fx:id="tabScarpe" text="Scarpe">
+      <fx:include fx:id="TabScarpe" source="shoeTable.fxml"/>
+   </Tab>
+   
+      <Tab fx:id="tabBiciclette" text="Biciclette">
+         <fx:include fx:id="TabBiciclette" source="bikeTable.fxml"/>
+      </Tab>
+
+      <Tab fx:id="tabAttivita" text="Attività">
+         <fx:include fx:id="TabAttivita" source="activityTable.fxml"/>
+      </Tab>
+      
+      <Tab fx:id="tabPercorsi" text="Percorsi">
+         <fx:include fx:id="TabPercorsi" source="trackTable.fxml"/>
+      </Tab>
+      <Tab fx:id="tabCommenti" text="Commenti">
+         <fx:include fx:id="TabCommenti" source="commentTable.fxml"/>
+      </Tab>
+
+
+      <Tab fx:id="tabSegmenti" text="Segmenti">
+          <fx:include fx:id="TabSegmenti" source="segmentTable.fxml"/>
+      </Tab>
+  </tabs>
+</TabPane>

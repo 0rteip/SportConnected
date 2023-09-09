@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+
+            <BorderPane prefHeight="810.0" prefWidth="1400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15" fx:controller="view.scenecontroller.UserTableController">
+               <center>
+                  <TableView fx:id="userTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </TableView>
+               </center>
+               <left>
+                  <TabPane tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+                    <tabs>
+                      <Tab fx:id="addUserPage" text="Aggiungi">
+                           <content>
+                              <VBox spacing="18.0">
+                                 <children>
+                                    <TextField fx:id="nameField" promptText="Nome" />
+                                    <TextField fx:id="surnameField" promptText="Cognome" />
+                                    <DatePicker fx:id="datePicker" maxWidth="1.7976931348623157E308" promptText="Nascita" />
+                                    <TextField fx:id="genderField" promptText="M/F" />
+                                    <TextField fx:id="cityField" promptText="Città*" />
+                                    <TextField fx:id="provField" promptText="Provincia*" />
+                                    <TextField fx:id="weightField" promptText="Peso*" />
+                                    <TextField fx:id="heightField" promptText="Altezza*" />
+                                    <TextArea fx:id="bioArea" prefHeight="100.0" prefWidth="50.0" promptText="Biografia*" />
+                                    <GridPane alignment="CENTER" hgap="20.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Button fx:id="loadPhotoButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loadPhoto" text="Carica foto" />
+                                          <Label fx:id="photoLabel" text="*" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <Button fx:id="addUserButton" mnemonicParsing="false" onAction="#addUser" text="Inserisci nuovo utente" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                      </Tab>
+                      <Tab fx:id="deleteUserPage" text="Rimuovi">
+                           <content>
+                              <VBox prefHeight="200.0" prefWidth="100.0" spacing="18.0">
+                                 <children>
+                                    <TextField fx:id="deleteUserField" promptText="Id utente" />
+                                    <Button fx:id="deleteUser" mnemonicParsing="false" onAction="#deleteUser" text="Cancella Utente" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                      </Tab>
+                        <Tab fx:id="operationPage" text="Operazioni">
+                           <content>
+                              <VBox spacing="18.0">
+                                 <children>
+                                    <Label text="Visualizza le attività dei seguiti da:" />
+                                    <TextField fx:id="userIdFollowField" promptText="Id utente" />
+                                    <Button fx:id="visualizeFollowActivitiesButton" mnemonicParsing="false" onAction="#visualizeActivities" text="Visualizza attività" />
+                                    <Label layoutX="30.0" layoutY="30.0" text="Visualizza distanza totale di &#10;quest'anno percorsa da:" />
+                                    <TextField fx:id="userIdTotalActivityField" layoutX="30.0" layoutY="66.0" promptText="Id utente" />
+                                    <Button fx:id="visualizeTotalDiistanceButton" layoutX="30.0" layoutY="110.0" mnemonicParsing="false" onAction="#visualizeTotalDistance" text="Visualizza distanza" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                        </Tab>
+                    </tabs>
+                  </TabPane>
+               </left>
+            </BorderPane>

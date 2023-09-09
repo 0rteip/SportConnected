@@ -990,8 +990,7 @@ AND month(A.Giorno) BETWEEN 7 AND 9;
 \end{lstlisting}
 
 
-\subsection*{09 - Visualizzazione della distanza totale percorsa in un anno da
-un utente}
+\subsection*{09 - Visualizzazione della distanza totale percorsa in un anno da un utente}
 In questo caso specifico scelgo di vedere quelle svolte nell'anno corrente
 \begin{lstlisting}[style=sql, language=SQL, label=lst:sql-query]
 SELECT U.IdUtente, U.Nome, sum(A.Distanza) DistanzaAnnuale
@@ -1003,8 +1002,7 @@ GROUP BY U.IdUtente, U.Nome
 \end{lstlisting}
 
 
-\subsection*{10 - Visualizzazione delle migliori prestazioni per ogni segmento
-su un dato utente}
+\subsection*{10 - Visualizzazione delle migliori prestazioni per ogni segmento su un dato utente}
 \begin{lstlisting}[style=sql, language=SQL, label=lst:sql-query]
 SELECT A.IdUtente, SP.IdSegmento, S.Nome, min(SP.TempoPercorrenza) TempoMinimo, 
         count(SP.TempoPercorrenza) NumVoltePercorso
